@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Семьян](https://up.htmlacademy.ru/react/2/user/1109523).
-* Наставник: `Иван Захарченко`.
+* Наставник: [Иван Захарченко](https://github.com/3axap4eHko).
 
 ---
 
