@@ -1,5 +1,5 @@
 import React from 'react';
-import RentObject from '../components/rent-object.jsx';
+import RentObject from '../rentObject/rent-object.jsx';
 import PropTypes from 'prop-types';
 
 const MainPage = (props) => <div className="page page--gray page--main">
@@ -90,7 +90,7 @@ const MainPage = (props) => <div className="page page--gray page--main">
             </select>
           </form>
           <div className="cities__places-list places__list tabs__content">
-            {props.rentObjects.map((ro) =><RentObject key={ro.key} rentObjectName={ro.text}/>)}
+            {props.rentObjects.map((ro) =><RentObject key={ro.key} rentObjectName={ro.text} onTitleClick={() => null}/>)}
           </div>
         </section>
         <div className="cities__right-section">
