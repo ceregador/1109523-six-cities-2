@@ -1,13 +1,19 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import RentObject from './rent-object.jsx';
+import RentObjectCard from './rent-object-card.jsx';
 
 it(`Title's onClick handler is called after click`, () => {
   const clickMock = jest.fn();
   const rentObject = shallow(
-      <RentObject
-        rentObjectName={``}
+      <RentObjectCard
+        name={``}
+        isPremium={false}
+        image={``}
+        type={``}
+        price={0}
+        isBookmarked={false}
         onTitleClick={clickMock}
+        onActiveOfferChanged={() => null}
       />);
 
   const title = rentObject.find(`.place-card__name`);
