@@ -2,13 +2,9 @@ import React from 'react';
 import propTypes from './prop-types';
 
 const RentObjectCard = (props) => {
-  const {name, isPremium, image, type, price, isBookmarked, onTitleClick, onActiveOfferChanged} = props;
+  const {id, name, isPremium, image, type, price, isBookmarked, onTitleClick, onActiveOfferChanged} = props;
 
-  const onRentObjectMouseOver = () => {
-    onActiveOfferChanged();
-  };
-
-  return <article className="cities__place-card place-card" onMouseEnter={onRentObjectMouseOver}>
+  return <article className="cities__place-card place-card" id={id} onMouseEnter={(evt) => onActiveOfferChanged(evt.currentTarget.id)}>
     {isPremium && <div className="place-card__mark">
       <span>Premium</span>
     </div>}

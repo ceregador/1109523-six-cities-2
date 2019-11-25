@@ -6,6 +6,7 @@ it(`Title's onClick handler is called after click`, () => {
   const clickMock = jest.fn();
   const rentObject = shallow(
       <RentObjectCard
+        id={`1`}
         name={``}
         isPremium={false}
         image={``}
@@ -19,4 +20,25 @@ it(`Title's onClick handler is called after click`, () => {
   const title = rentObject.find(`.place-card__name`);
   title.simulate(`click`);
   expect(clickMock).toHaveBeenCalledTimes(1);
+});
+
+it(`Card's onActiveOfferChanged handler is called after mouse enter`, () => {
+  const mouseEnterMock = jest.fn();
+  const rentObject = shallow(
+      <RentObjectCard
+        id={`1`}
+        name={``}
+        isPremium={false}
+        image={``}
+        type={``}
+        price={0}
+        isBookmarked={false}
+        onTitleClick={() => null}
+        onActiveOfferChanged={mouseEnterMock}
+      />);
+
+  const card = rentObject.find(`.cities__place-card.place-card`);
+  const fakeEvent = {currentTarget: {id: `1`}};
+  card.simulate(`mouseEnter`, fakeEvent);
+  expect(mouseEnterMock).toHaveBeenCalledWith(`1`);
 });

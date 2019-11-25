@@ -22,4 +22,4 @@ const offersPropTypes = PropTypes.arrayOf(
       )})
 );
 
-export {requiredFunc, offersPropTypes};
+export {requiredFunc, requiredString, offersPropTypes};

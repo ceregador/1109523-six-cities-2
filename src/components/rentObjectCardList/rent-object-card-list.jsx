@@ -10,9 +10,12 @@ class RentObjectCardList extends React.PureComponent {
     this.state = {
       activeOfferId: null
     };
+
+    this.onActiveOfferChanged = this.onActiveOfferChanged.bind(this);
   }
 
-  onActiveOfferChanged() {
+  onActiveOfferChanged(id) {
+    this.setState({activeOfferId: id});
   }
 
   render() {
@@ -40,6 +43,7 @@ class RentObjectCardList extends React.PureComponent {
         {
           offers.map((o) =><RentObjectCard
             key={o.key}
+            id={o.key}
             name={o.name}
             type={o.type}
             image={o.image}
