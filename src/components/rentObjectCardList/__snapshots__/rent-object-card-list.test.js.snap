@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<section
+  className="cities__places places"
+>
+  <h2
+    className="visually-hidden"
+  >
+    Places
+  </h2>
+  <b
+    className="places__found"
+  >
+    1
+     places to stay in 
+  </b>
+  <form
+    action="#"
+    className="places__sorting"
+    method="get"
+  >
+    <span
+      className="places__sorting-caption"
+    >
+      Sort by
+    </span>
+    <span
+      className="places__sorting-type"
+      tabIndex="0"
+    >
+      Popular
+      <svg
+        className="places__sorting-arrow"
+        height="4"
+        width="7"
+      >
+        <use
+          xlinkHref="#icon-arrow-select"
+        />
+      </svg>
+    </span>
+    <select
+      className="places__sorting-type"
+      id="places-sorting"
+    >
+      <option
+        className="places__option"
+        selected=""
+        value="popular"
+      >
+        Popular
+      </option>
+      <option
+        className="places__option"
+        value="to-high"
+      >
+        Price: low to high
+      </option>
+      <option
+        className="places__option"
+        value="to-low"
+      >
+        Price: high to low
+      </option>
+      <option
+        className="places__option"
+        value="top-rated"
+      >
+        Top rated first
+      </option>
+    </select>
+  </form>
+  <div
+    className="cities__places-list places__list tabs__content"
+  />
+</section>
+`;
