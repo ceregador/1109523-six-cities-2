@@ -2,10 +2,10 @@ import React from 'react';
 import MainPage from './main-page.jsx';
 import Renderer from 'react-test-renderer';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
-import Map from '../map/map.jsx';
+import OffersMap from '../offersMap/offers-map.jsx';
 
 jest.mock(`../rentObjectCardList/rent-object-card-list.jsx`);
-jest.mock(`../map/map.jsx`);
+jest.mock(`../offersMap/offers-map.jsx`);
 
 it(`renders correctly`, () => {
   const tree = Renderer
@@ -13,5 +13,5 @@ it(`renders correctly`, () => {
     .toJSON();
   expect(tree).toMatchSnapshot();
   expect(RentObjectCardList).toHaveBeenCalled();
-  expect(Map).toHaveBeenCalled();
+  expect(OffersMap).toHaveBeenCalled();
 });

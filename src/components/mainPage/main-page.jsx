@@ -1,7 +1,7 @@
 import React from 'react';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
 import {offersPropTypes} from '../prop-types';
-import Map from '../map/map.jsx';
+import OffersMap from '../offersMap/offers-map.jsx';
 
 const MainPage = (props) => {
   const {offers} = props;
@@ -72,7 +72,7 @@ const MainPage = (props) => {
           <RentObjectCardList city={offers[0].city.name} offers={offers[0].offers}/>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map cityCoordinates={offers[0].city.coordinates} offersCoordinates={offers[0].offers.map((o) => o.coordinates)}/>
+              <OffersMap cityCoordinates={offers[0].city.coordinates} offersCoordinates={offers[0].offers.map((o) => o.coordinates)}/>
             </section>
           </div>
         </div>

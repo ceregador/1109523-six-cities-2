@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import leaflet from 'leaflet';
 import propTypes from './prop-types';
 
-const Map = ({cityCoordinates, offersCoordinates}) => {
+const OffersMap = ({cityCoordinates, offersCoordinates}) => {
   const mapRef = useRef();
 
   const icon = leaflet.icon({
@@ -37,7 +37,7 @@ const Map = ({cityCoordinates, offersCoordinates}) => {
   return <div id="map" ref={mapRef} style={{height: `800px`}}/>;
 };
 
-Map.propTypes = propTypes;
+OffersMap.propTypes = propTypes;
 
-export default Map;
+export default OffersMap;
 
