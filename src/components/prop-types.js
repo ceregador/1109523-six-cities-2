@@ -17,9 +17,10 @@ const offersPropTypes = PropTypes.arrayOf(
             price: requiredNumber,
             rating: requiredNumber,
             isPremium: requiredBoolean,
-            isBookmarked: requiredBoolean
+            isBookmarked: requiredBoolean,
+            coordinates: PropTypes.arrayOf(requiredNumber)
           })
       )})
 );
 
-export {requiredFunc, requiredString, offersPropTypes};
+export {requiredFunc, requiredString, requiredNumber, offersPropTypes};
