@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders and connects correctly 1`] = `
+<section
+  className="locations container"
+>
+  <ul
+    className="locations__list tabs__list"
+  />
+</section>
+`;

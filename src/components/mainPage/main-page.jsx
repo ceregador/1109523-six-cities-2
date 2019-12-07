@@ -1,10 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import ActionCreator from '../../actions/action-creator';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
-import {offersPropTypes} from '../prop-types';
+import propTypes from './prop-types';
 import OffersMap from '../offersMap/offers-map.jsx';
+import CitiesList from '../citiesList/cities-list.jsx';
 
-const MainPage = (props) => {
-  const {offers} = props;
+const MainPage = ({activeCityName, cities, onChangeCity}) => {
+  const activeCity = cities.find((city) => city.name === activeCityName);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -32,47 +35,14 @@ const MainPage = (props) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
+        <CitiesList cities={cities} activeCityName={activeCityName} onChangeCity={onChangeCity}/>
       </div>
       <div className="cities">
         <div className="cities__places-container container">
-          <RentObjectCardList city={offers[0].city.name} offers={offers[0].offers}/>
+          <RentObjectCardList cityName={activeCity.name}/>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <OffersMap cityCoordinates={offers[0].city.coordinates} offersCoordinates={offers[0].offers.map((o) => o.coordinates)}/>
+              <OffersMap cityCoordinates={activeCity.coordinates}/>
             </section>
           </div>
         </div>
@@ -81,6 +51,15 @@ const MainPage = (props) => {
   </div>;
 };
 
-MainPage.propTypes = offersPropTypes;
+MainPage.propTypes = propTypes;
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  activeCityName: state.activeCityName,
+  cities: state.cities
+});
+
+const mapDispatchToProps = {
+  onChangeCity: (newActiveCityName) => ActionCreator.setActiveCity(newActiveCityName)
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
