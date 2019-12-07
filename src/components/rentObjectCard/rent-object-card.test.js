@@ -6,6 +6,7 @@ it(`renders correctly`, () => {
   const tree = Renderer
     .create(
         <RentObjectCard
+          id={1}
           name={``}
           isPremium={false}
           image={``}

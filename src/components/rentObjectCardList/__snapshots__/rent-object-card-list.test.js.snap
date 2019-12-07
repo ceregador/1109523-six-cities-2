@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`renders and connnects correctly 1`] = `
 <section
   className="cities__places places"
 >
@@ -14,6 +14,7 @@ exports[`renders correctly 1`] = `
   >
     1
      places to stay in 
+    
   </b>
   <form
     action="#"

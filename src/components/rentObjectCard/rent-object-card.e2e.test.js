@@ -6,7 +6,7 @@ it(`Title's onClick handler is called after click`, () => {
   const clickMock = jest.fn();
   const rentObject = shallow(
       <RentObjectCard
-        id={`1`}
+        id={1}
         name={``}
         isPremium={false}
         image={``}
@@ -26,7 +26,7 @@ it(`Card's onActiveOfferChanged handler is called after mouse enter`, () => {
   const mouseEnterMock = jest.fn();
   const rentObject = shallow(
       <RentObjectCard
-        id={`1`}
+        id={1}
         name={``}
         isPremium={false}
         image={``}

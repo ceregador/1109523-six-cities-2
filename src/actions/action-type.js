@@ -1,0 +1,6 @@
+const ACTION_TYPE = {
+  SET_CITY: `SET_CITY`,
+  GET_CITY_OFFERS: `GET_CITY_OFFERS`
+};
+
+export default ACTION_TYPE;

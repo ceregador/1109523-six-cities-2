@@ -1,7 +1,15 @@
-import {offersPropTypes, requiredFunc, requiredString} from '../prop-types';
+import {requiredNumber, requiredBoolean, requiredFunc, requiredString} from '../prop-types';
 
-offersPropTypes.id = requiredString;
-offersPropTypes.onTitleClick = requiredFunc;
-offersPropTypes.onActiveOfferChanged = requiredFunc;
+const propTypes = {
+  id: requiredNumber,
+  name: requiredString,
+  isPremium: requiredBoolean,
+  image: requiredString,
+  type: requiredString,
+  price: requiredNumber,
+  isBookmarked: requiredBoolean,
+  onTitleClick: requiredFunc,
+  onActiveOfferChanged: requiredFunc
+};
 
-export default offersPropTypes;
+export default propTypes;

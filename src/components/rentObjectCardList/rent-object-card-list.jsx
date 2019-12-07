@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
-import {offersPropTypes} from '../prop-types';
+import propTypes from './prop-types';
 
-const RentObjectCardList = (props) => {
-
-  const {city, offers} = props;
+const RentObjectCardList = ({cityName, offers}) => {
   const [, updateActiveOfferId] = useState(null);
 
   const onActiveOfferChanged = (id) => {
@@ -13,7 +12,7 @@ const RentObjectCardList = (props) => {
 
   return <section className="cities__places places">
     <h2 className="visually-hidden">Places</h2>
-    <b className="places__found">{offers.length} places to stay in {city}</b>
+    <b className="places__found">{offers.length} places to stay in {cityName}</b>
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex="0">
@@ -32,8 +31,8 @@ const RentObjectCardList = (props) => {
     <div className="cities__places-list places__list tabs__content">
       {
         offers.map((o) =><RentObjectCard
-          key={o.key}
-          id={o.key}
+          key={o.id}
+          id={o.id}
           name={o.name}
           type={o.type}
           image={o.image}
@@ -48,6 +47,10 @@ const RentObjectCardList = (props) => {
   </section>;
 };
 
-RentObjectCardList.propTypes = offersPropTypes;
+RentObjectCardList.propTypes = propTypes;
 
-export default RentObjectCardList;
+const mapStateToProps = (state) => ({
+  offers: state.cityOffers
+});
+
+export default connect(mapStateToProps, null)(RentObjectCardList);

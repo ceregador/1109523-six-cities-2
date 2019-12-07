@@ -1,4 +1,5 @@
 import React, {useRef, useEffect} from 'react';
+import {connect} from 'react-redux';
 import leaflet from 'leaflet';
 import propTypes from './prop-types';
 
@@ -32,6 +33,11 @@ const OffersMap = ({cityCoordinates, offersCoordinates}) => {
     });
 
     leaflet.layerGroup(markers).addTo(map);
+
+    return () => {
+      map.off();
+      map.remove();
+    };
   });
 
   return <div id="map" ref={mapRef} style={{height: `800px`}}/>;
@@ -39,5 +45,9 @@ const OffersMap = ({cityCoordinates, offersCoordinates}) => {
 
 OffersMap.propTypes = propTypes;
 
-export default OffersMap;
+const mapStateToProps = (state) => ({
+  offersCoordinates: state.cityOffers.map((o) => o.coordinates)
+});
+
+export default connect(mapStateToProps, null)(OffersMap);
 
