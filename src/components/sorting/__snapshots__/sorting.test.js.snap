@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders and connects correctly 1`] = `
+<form
+  action="#"
+  className="places__sorting"
+  method="get"
+>
+  <span
+    className="places__sorting-caption"
+  >
+    Sort by 
+  </span>
+  <select
+    className="places__sorting-type"
+    id="places-sorting"
+  >
+    <option
+      className="places__option"
+      value="Popular"
+    >
+      Popular
+    </option>
+    <option
+      className="places__option"
+      value="Price: low to high"
+    >
+      Price: low to high
+    </option>
+    <option
+      className="places__option"
+      value="Price: high to low"
+    >
+      Price: high to low
+    </option>
+    <option
+      className="places__option"
+      value="Top rated first"
+    >
+      Top rated first
+    </option>
+  </select>
+</form>
+`;

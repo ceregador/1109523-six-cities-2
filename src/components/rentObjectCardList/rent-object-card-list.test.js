@@ -3,8 +3,10 @@ import {connect, connectAdvanced} from 'react-redux';
 import Renderer from 'react-test-renderer';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
 import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
+import Sorting from '../sorting/sorting.jsx';
 
 jest.mock(`../rentObjectCard/rent-object-card.jsx`);
+jest.mock(`../sorting/sorting.jsx`);
 jest.mock(`react-redux`);
 
 it(`renders and connnects correctly`, () => {
@@ -39,5 +41,6 @@ it(`renders and connnects correctly`, () => {
   expect(connectAdvanced).toHaveBeenCalledWith(RentObjectCardList);
 
   expect(RentObjectCard).toHaveBeenCalled();
+  expect(Sorting).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });

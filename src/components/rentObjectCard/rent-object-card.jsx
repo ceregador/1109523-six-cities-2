@@ -1,9 +1,23 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import ActionCreator from '../../actions/action-creator';
+import Rating from '../rating/rating.jsx';
 import propTypes from './prop-types';
 
-const RentObjectCard = ({id, name, isPremium, image, type, price, isBookmarked, onTitleClick, onActiveOfferChanged}) => {
+const RentObjectCard = ({
+  id,
+  name,
+  isPremium,
+  image,
+  type,
+  price,
+  rating,
+  isBookmarked,
+  onTitleClick,
+  onActiveOfferChanged}) => {
 
-  return <article className="cities__place-card place-card" id={id} onMouseEnter={(evt) => onActiveOfferChanged(evt.currentTarget.id)}>
+  return <article className="cities__place-card place-card" id={id}
+    onMouseEnter={() => onActiveOfferChanged(id)} onMouseLeave={() => onActiveOfferChanged(null)}>
     {isPremium && <div className="place-card__mark">
       <span>Premium</span>
     </div>}
@@ -25,12 +39,7 @@ const RentObjectCard = ({id, name, isPremium, image, type, price, isBookmarked, 
           <span className="visually-hidden">To bookmarks</span>
         </button>
       </div>
-      <div className="place-card__rating rating">
-        <div className="place-card__stars rating__stars">
-          <span style={{width: `93%`}}></span>
-          <span className="visually-hidden">Rating</span>
-        </div>
-      </div>
+      <Rating value={rating}/>
       <h2 onClick={onTitleClick} className="place-card__name">
         <a href="#">{name}</a>
       </h2>
@@ -41,4 +50,8 @@ const RentObjectCard = ({id, name, isPremium, image, type, price, isBookmarked, 
 
 RentObjectCard.propTypes = propTypes;
 
-export default RentObjectCard;
+const mapDispatchToProps = {
+  onActiveOfferChanged: (offerId) => ActionCreator.updateActiveCard(offerId)
+};
+
+export default connect(null, mapDispatchToProps)(RentObjectCard);

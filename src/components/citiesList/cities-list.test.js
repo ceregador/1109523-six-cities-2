@@ -25,6 +25,7 @@ it(`renders and connects correctly`, () => {
   expect(mapDispatchToProps).toHaveProperty(`loadOffers`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(CitiesList);
+
   expect(City).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });

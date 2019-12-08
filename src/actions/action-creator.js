@@ -17,6 +17,18 @@ const ActionCreator = {
       type: ACTION_TYPE.GET_CITY_OFFERS,
       payload: offers
     };
+  },
+  setSortingType: (sortingType) => {
+    return {
+      type: ACTION_TYPE.SET_SORTING_TYPE,
+      payload: sortingType
+    };
+  },
+  updateActiveCard: (offerId) => {
+    return {
+      type: ACTION_TYPE.UPDATE_ACTIVE_CARD,
+      payload: offerId
+    };
   }
 };
 
