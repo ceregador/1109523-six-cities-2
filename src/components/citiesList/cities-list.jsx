@@ -1,12 +1,17 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import City from '../city/city.jsx';
 import ActionCreator from '../../actions/action-creator';
 import propTypes from './prop-types';
 
 const CitiesList = ({cities, activeCityName, onChangeCity, loadOffers}) => {
+  const isComponentUpdate = useRef(false);
+
   useEffect(() => {
-    loadOffers(activeCityName);
+    if (isComponentUpdate.current) {
+      loadOffers(activeCityName);
+    }
+    isComponentUpdate.current = true;
   }, [activeCityName]);
 
   return <section className="locations container">

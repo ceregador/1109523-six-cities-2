@@ -7,6 +7,7 @@ const propTypes = {
   image: requiredString,
   type: requiredString,
   price: requiredNumber,
+  rating: requiredNumber,
   isBookmarked: requiredBoolean,
   onTitleClick: requiredFunc,
   onActiveOfferChanged: requiredFunc

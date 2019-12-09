@@ -6,7 +6,9 @@ import reducer from './reducer/reducer';
 import MainPage from './components/mainPage/main-page.jsx';
 
 const init = () => {
-  const store = createStore(reducer);
+  const store = createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
 
   ReactDOM.render(
       <Provider store={store}>
