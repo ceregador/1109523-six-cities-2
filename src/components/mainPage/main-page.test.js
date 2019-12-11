@@ -16,9 +16,8 @@ it(`renders and connects correctly`, () => {
   const tree = Renderer
     .create(
         <MainPage
-          activeCityName={`City`}
           cities={[{name: `City`}]}
-          onChangeCity={() => null}
+          loadOffers={() => null}
         />)
     .toJSON();
 
