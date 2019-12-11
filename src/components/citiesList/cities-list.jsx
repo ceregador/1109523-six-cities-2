@@ -1,18 +1,14 @@
-import React, {useEffect, useRef} from 'react';
-import {connect} from 'react-redux';
+import React, {useState} from 'react';
 import City from '../city/city.jsx';
-import ActionCreator from '../../actions/action-creator';
 import propTypes from './prop-types';
 
-const CitiesList = ({cities, activeCityName, onChangeCity, loadOffers}) => {
-  const isComponentUpdate = useRef(false);
+const CitiesList = ({cities, onChangeCity}) => {
+  const [activeCityName, updateActiveCityName] = useState(cities[0].name);
 
-  useEffect(() => {
-    if (isComponentUpdate.current) {
-      loadOffers(activeCityName);
-    }
-    isComponentUpdate.current = true;
-  }, [activeCityName]);
+  const onClick = (cityName) => {
+    updateActiveCityName(cityName);
+    onChangeCity(cityName);
+  };
 
   return <section className="locations container">
     <ul className="locations__list tabs__list">
@@ -21,15 +17,12 @@ const CitiesList = ({cities, activeCityName, onChangeCity, loadOffers}) => {
           city={city}
           isActive={city.name === activeCityName}
           key={city.name}
-          onClick={onChangeCity}/>)}
+          onClick={onClick}
+        />)}
     </ul>
   </section>;
 };
 
 CitiesList.propTypes = propTypes;
 
-const mapDispatchToProps = {
-  loadOffers: (cityName) => ActionCreator.getOffers(cityName)
-};
-
-export default connect(null, mapDispatchToProps)(CitiesList);
+export default CitiesList;

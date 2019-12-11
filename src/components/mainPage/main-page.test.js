@@ -27,11 +27,10 @@ it(`renders and connects correctly`, () => {
 
   const mapStateToProps = connect.mock.calls[0][0];
   const mappedProps = mapStateToProps({});
-  expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`cities`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
-  expect(mapDispatchToProps).toHaveProperty(`onChangeCity`);
+  expect(mapDispatchToProps).toHaveProperty(`loadOffers`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);
 

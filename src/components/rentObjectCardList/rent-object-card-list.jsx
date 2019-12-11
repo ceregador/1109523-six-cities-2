@@ -5,7 +5,7 @@ import Sorting from '../sorting/sorting.jsx';
 import {sortingSelector} from '../../selectors/sorting-selector';
 import propTypes from './prop-types';
 
-const RentObjectCardList = ({cityName, offers}) => {
+const RentObjectCardList = ({offers, cityName}) => {
 
   return <section className="cities__places places">
     <h2 className="visually-hidden">Places</h2>

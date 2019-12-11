@@ -6,9 +6,7 @@ const propTypes = {
     name: requiredString,
     coordinates: PropTypes.arrayOf(requiredNumber)
   })),
-  activeCityName: requiredString,
-  onChangeCity: requiredFunc,
-  loadOffers: requiredFunc
+  onChangeCity: requiredFunc
 };
 
 export default propTypes;
