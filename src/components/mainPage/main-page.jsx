@@ -1,26 +1,21 @@
-import React, {useState, useRef, useEffect, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
 import propTypes from './prop-types';
 import OffersMap from '../offersMap/offers-map.jsx';
 import CitiesList from '../citiesList/cities-list.jsx';
 import ActionCreator from '../../actions/action-creator';
+import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
 
 const MainPage = ({cities, loadOffers}) => {
-  const isComponentUpdate = useRef(false);
   const [activeCity, updateActiveCity] = useState(cities[0]);
-
-  useEffect(() => {
-    if (isComponentUpdate.current) {
-      loadOffers(activeCity.name);
-    }
-    isComponentUpdate.current = true;
-  }, []);
 
   const onChangeCity = useCallback((cityName) => {
     loadOffers(cityName);
     updateActiveCity(cities.find((city) => city.name === cityName));
   });
+
+  const WrappedCityList = withActiveItem(CitiesList);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -48,7 +43,12 @@ const MainPage = ({cities, loadOffers}) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <CitiesList cities={cities} onChangeCity={onChangeCity}/>
+        <WrappedCityList
+          cities={cities}
+          defaultItem={cities[0].name}
+          activeItem={activeCity.name}
+          onChangeActiveItem={onChangeCity}
+        />
       </div>
       <div className="cities">
         <div className="cities__places-container container">
