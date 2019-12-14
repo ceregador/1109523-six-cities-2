@@ -6,7 +6,12 @@ const propTypes = {
     name: requiredString,
     coordinates: PropTypes.arrayOf(requiredNumber)
   })),
-  loadOffers: requiredFunc
+  activeCity: PropTypes.shape({
+    name: requiredString,
+    coordinates: PropTypes.arrayOf(requiredNumber)
+  }),
+  loadOffers: requiredFunc,
+  changeActiveCity: requiredFunc
 };
 
 export default propTypes;

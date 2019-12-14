@@ -3,6 +3,12 @@ import {getOffersByCityName} from './offers-extractor';
 import rentObjects from '../mocks/offers';
 
 const ActionCreator = {
+  setCity: (cityName) => {
+    return {
+      type: ACTION_TYPE.SET_CITY,
+      payload: cityName
+    };
+  },
   getOffers: (cityName) => {
     const offers = getOffersByCityName(rentObjects, cityName);
 

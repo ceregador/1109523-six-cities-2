@@ -6,7 +6,7 @@ const propTypes = {
     name: requiredString,
     coordinates: PropTypes.arrayOf(requiredNumber)
   })),
-  onItemClick: requiredFunc
+  onItemChange: requiredFunc
 };
 
 export default propTypes;

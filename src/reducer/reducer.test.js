@@ -1,6 +1,16 @@
 import reducer from './reducer';
 import ACTION_TYPE from '../actions/action-type';
 
+it(`action SET_CITY sets activeCityName properly`, () => {
+  expect(reducer({
+    activeCityName: `oldCity`
+  },
+  {
+    type: ACTION_TYPE.SET_CITY,
+    payload: `newCity`
+  })).toHaveProperty(`activeCityName`, `newCity`);
+});
+
 it(`action GET_CITY_OFFERS sets cityOffers properly`, () => {
   expect(reducer({
     cityOffers: []

@@ -11,12 +11,14 @@ jest.mock(`../offersMap/offers-map.jsx`);
 jest.mock(`../citiesList/cities-list.jsx`);
 jest.mock(`../city/city.jsx`);
 jest.mock(`react-redux`);
+jest.mock(`../../selectors/active-city-selector`);
 
 it(`renders and connects correctly`, () => {
   const tree = Renderer
     .create(
         <MainPage
           cities={[{name: `City`}]}
+          activeCity={{name: `City1`}}
           loadOffers={() => null}
         />)
     .toJSON();
@@ -27,9 +29,11 @@ it(`renders and connects correctly`, () => {
   const mapStateToProps = connect.mock.calls[0][0];
   const mappedProps = mapStateToProps({});
   expect(mappedProps).toHaveProperty(`cities`);
+  expect(mappedProps).toHaveProperty(`activeCity`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`loadOffers`);
+  expect(mapDispatchToProps).toHaveProperty(`changeActiveCity`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);
 

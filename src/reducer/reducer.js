@@ -7,6 +7,7 @@ const cities = getUniqueCitiesFromOffers(rentObjects);
 
 const initialState = {
   cities,
+  activeCityName: cities[0].name,
   cityOffers: getOffersByCityName(rentObjects, cities[0].name),
   sortingType: SORTING_TYPE.POPULAR,
   activeOfferId: null
@@ -14,6 +15,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ACTION_TYPE.SET_CITY:
+      return Object.assign({}, state, {
+        activeCityName: action.payload
+      });
 
     case ACTION_TYPE.GET_CITY_OFFERS:
       return Object.assign({}, state, {

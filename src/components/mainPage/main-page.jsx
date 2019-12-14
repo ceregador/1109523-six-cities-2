@@ -1,21 +1,19 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
 import propTypes from './prop-types';
 import OffersMap from '../offersMap/offers-map.jsx';
 import CitiesList from '../citiesList/cities-list.jsx';
 import ActionCreator from '../../actions/action-creator';
-import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
+import {activeCitySelector} from '../../selectors/active-city-selector';
 
-const MainPage = ({cities, loadOffers}) => {
-  const [activeCity, updateActiveCity] = useState(cities[0]);
+const MainPage = ({cities, loadOffers, activeCity, changeActiveCity}) => {
 
   const onChangeCity = useCallback((cityName) => {
+    changeActiveCity(cityName);
     loadOffers(cityName);
-    updateActiveCity(cities.find((city) => city.name === cityName));
-  });
-
-  const WrappedCityList = withActiveItem(CitiesList);
+  }, []);
+  const getDefaultCityName = useCallback(() => cities[0].name, []);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -43,11 +41,10 @@ const MainPage = ({cities, loadOffers}) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <WrappedCityList
+        <CitiesList
           cities={cities}
-          defaultItem={cities[0].name}
-          activeItem={activeCity.name}
           onChangeActiveItem={onChangeCity}
+          getDefaultItem={getDefaultCityName}
         />
       </div>
       <div className="cities">
@@ -67,11 +64,13 @@ const MainPage = ({cities, loadOffers}) => {
 MainPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
+  activeCity: activeCitySelector(state),
   cities: state.cities
 });
 
 const mapDispatchToProps = {
-  loadOffers: (cityName) => ActionCreator.getOffers(cityName)
+  loadOffers: (cityName) => ActionCreator.getOffers(cityName),
+  changeActiveCity: (cityName) => ActionCreator.setCity(cityName)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

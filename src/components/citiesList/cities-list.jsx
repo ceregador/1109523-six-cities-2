@@ -1,8 +1,9 @@
 import React from 'react';
 import City from '../city/city.jsx';
 import propTypes from './prop-types';
+import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
 
-const CitiesList = ({cities, onItemClick, activeItem}) => {
+const CitiesList = ({cities, onItemChange, activeItem}) => {
 
   return <section className="locations container">
     <ul className="locations__list tabs__list">
@@ -10,7 +11,7 @@ const CitiesList = ({cities, onItemClick, activeItem}) => {
         <City
           city={city}
           key={city.name}
-          onClick={onItemClick}
+          onClick={onItemChange}
           isActive={activeItem === city.name}
         />)}
     </ul>
@@ -19,4 +20,4 @@ const CitiesList = ({cities, onItemClick, activeItem}) => {
 
 CitiesList.propTypes = propTypes;
 
-export default CitiesList;
+export default withActiveItem(CitiesList);
