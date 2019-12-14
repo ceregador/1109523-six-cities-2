@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {requiredNumber} from '../prop-types';
+import {requiredNumber} from '../../prop-types';
 
 const propTypes = {
   cityCoordinates: PropTypes.arrayOf(requiredNumber),

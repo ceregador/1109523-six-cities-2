@@ -3,11 +3,10 @@ import {getOffersByCityName} from './offers-extractor';
 import rentObjects from '../mocks/offers';
 
 const ActionCreator = {
-  setActiveCity: (newActiveCityName) => {
-
+  setCity: (cityName) => {
     return {
       type: ACTION_TYPE.SET_CITY,
-      payload: newActiveCityName
+      payload: cityName
     };
   },
   getOffers: (cityName) => {

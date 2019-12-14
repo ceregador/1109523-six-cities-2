@@ -2,12 +2,10 @@ import React from 'react';
 import RentObjectCard from './rent-object-card.jsx';
 import Rating from '../rating/rating.jsx';
 import Renderer from 'react-test-renderer';
-import {connect, connectAdvanced} from 'react-redux';
 
 jest.mock(`../rating/rating.jsx`);
-jest.mock(`react-redux`);
 
-it(`renders and connects correctly`, () => {
+it(`renders correctly`, () => {
   const tree = Renderer
     .create(
         <RentObjectCard
@@ -23,14 +21,6 @@ it(`renders and connects correctly`, () => {
           onActiveOfferChanged={() => null}
         />)
     .toJSON();
-
-  expect(connect).toHaveBeenCalledTimes(1);
-  expect(connect).toHaveBeenCalledWith(null, expect.any(Object));
-
-  const mapDispatchToProps = connect.mock.calls[0][1];
-  expect(mapDispatchToProps).toHaveProperty(`onActiveOfferChanged`);
-
-  expect(connectAdvanced).toHaveBeenCalledWith(RentObjectCard);
 
   expect(Rating).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();

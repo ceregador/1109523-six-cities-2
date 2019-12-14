@@ -1,6 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import ActionCreator from '../../actions/action-creator';
 import Rating from '../rating/rating.jsx';
 import propTypes from './prop-types';
 
@@ -50,8 +48,4 @@ const RentObjectCard = ({
 
 RentObjectCard.propTypes = propTypes;
 
-const mapDispatchToProps = {
-  onActiveOfferChanged: (offerId) => ActionCreator.updateActiveCard(offerId)
-};
-
-export default connect(null, mapDispatchToProps)(RentObjectCard);
+export default RentObjectCard;

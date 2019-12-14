@@ -4,8 +4,9 @@ import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
 import Sorting from '../sorting/sorting.jsx';
 import {sortingSelector} from '../../selectors/sorting-selector';
 import propTypes from './prop-types';
+import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
 
-const RentObjectCardList = ({cityName, offers}) => {
+const RentObjectCardList = ({offers, cityName, onActiveItemChange}) => {
 
   return <section className="cities__places places">
     <h2 className="visually-hidden">Places</h2>
@@ -23,6 +24,7 @@ const RentObjectCardList = ({cityName, offers}) => {
           rating={o.rating}
           isPremium={o.isPremium}
           isBookmarked={o.isBookmarked}
+          onActiveOfferChanged={onActiveItemChange}
           onTitleClick={() => null}/>)
       }
     </div>
@@ -35,4 +37,4 @@ const mapStateToProps = (state) => ({
   offers: sortingSelector(state)
 });
 
-export default connect(mapStateToProps, null)(RentObjectCardList);
+export default connect(mapStateToProps, null)(withActiveItem(RentObjectCardList));

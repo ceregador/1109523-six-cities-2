@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
-import ActionCreator from '../../actions/action-creator';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
 import propTypes from './prop-types';
 import OffersMap from '../offersMap/offers-map.jsx';
 import CitiesList from '../citiesList/cities-list.jsx';
+import ActionCreator from '../../actions/action-creator';
+import {activeCitySelector} from '../../selectors/active-city-selector';
 
-const MainPage = ({activeCityName, cities, onChangeCity}) => {
-  const activeCity = cities.find((city) => city.name === activeCityName);
+const MainPage = ({cities, loadOffers, activeCity, changeActiveCity, updateActiveCard}) => {
+
+  const onChangeCity = useCallback((cityName) => {
+    changeActiveCity(cityName);
+    loadOffers(cityName);
+  }, []);
+  const getDefaultCityName = useCallback(() => cities[0].name, []);
+  const onChangeActiveCard = useCallback((offerId) => {
+    updateActiveCard(offerId);
+  }, []);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -35,11 +44,18 @@ const MainPage = ({activeCityName, cities, onChangeCity}) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <CitiesList cities={cities} activeCityName={activeCityName} onChangeCity={onChangeCity}/>
+        <CitiesList
+          cities={cities}
+          onChangeActiveItem={onChangeCity}
+          getDefaultItem={getDefaultCityName}
+        />
       </div>
       <div className="cities">
         <div className="cities__places-container container">
-          <RentObjectCardList cityName={activeCity.name}/>
+          <RentObjectCardList
+            cityName={activeCity.name}
+            onChangeActiveItem={onChangeActiveCard}
+          />
           <div className="cities__right-section">
             <section className="cities__map map">
               <OffersMap cityCoordinates={activeCity.coordinates}/>
@@ -54,12 +70,14 @@ const MainPage = ({activeCityName, cities, onChangeCity}) => {
 MainPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  activeCityName: state.activeCityName,
+  activeCity: activeCitySelector(state),
   cities: state.cities
 });
 
 const mapDispatchToProps = {
-  onChangeCity: (newActiveCityName) => ActionCreator.setActiveCity(newActiveCityName)
+  loadOffers: (cityName) => ActionCreator.getOffers(cityName),
+  changeActiveCity: (cityName) => ActionCreator.setCity(cityName),
+  updateActiveCard: (offerId) => ActionCreator.updateActiveCard(offerId)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

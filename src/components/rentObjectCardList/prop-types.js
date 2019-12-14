@@ -1,4 +1,4 @@
-import {requiredString, requiredBoolean, requiredNumber, requiredFunc} from '../prop-types';
+import {requiredString, requiredBoolean, requiredNumber, requiredFunc} from '../../prop-types';
 import PropTypes from 'prop-types';
 
 const propTypes = {

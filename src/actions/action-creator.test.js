@@ -2,7 +2,7 @@ import ActionCreator from './action-creator';
 import ACTION_TYPE from './action-type';
 
 it(`returns expected SET_CITY action`, () => {
-  expect(ActionCreator.setActiveCity(`City`)).toMatchObject({
+  expect(ActionCreator.setCity(`City`)).toMatchObject({
     type: ACTION_TYPE.SET_CITY,
     payload: `City`
   });
