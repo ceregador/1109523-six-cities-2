@@ -13,6 +13,7 @@ it(`renders and connects correctly`, () => {
             activeCityName={``}
             onChangeCity={() => null}
             loadOffers={() => null}
+            getDefaultItem={() => null}
           />)
       .toJSON();
 

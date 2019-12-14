@@ -20,6 +20,7 @@ it(`renders and connects correctly`, () => {
           cities={[{name: `City`}]}
           activeCity={{name: `City1`}}
           loadOffers={() => null}
+          changeActiveCity={() => null}
         />)
     .toJSON();
 
