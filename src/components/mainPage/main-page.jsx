@@ -7,13 +7,16 @@ import CitiesList from '../citiesList/cities-list.jsx';
 import ActionCreator from '../../actions/action-creator';
 import {activeCitySelector} from '../../selectors/active-city-selector';
 
-const MainPage = ({cities, loadOffers, activeCity, changeActiveCity}) => {
+const MainPage = ({cities, loadOffers, activeCity, changeActiveCity, updateActiveCard}) => {
 
   const onChangeCity = useCallback((cityName) => {
     changeActiveCity(cityName);
     loadOffers(cityName);
   }, []);
   const getDefaultCityName = useCallback(() => cities[0].name, []);
+  const onChangeActiveCard = useCallback((offerId) => {
+    updateActiveCard(offerId);
+  }, []);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -49,7 +52,10 @@ const MainPage = ({cities, loadOffers, activeCity, changeActiveCity}) => {
       </div>
       <div className="cities">
         <div className="cities__places-container container">
-          <RentObjectCardList cityName={activeCity.name}/>
+          <RentObjectCardList
+            cityName={activeCity.name}
+            onChangeActiveItem={onChangeActiveCard}
+          />
           <div className="cities__right-section">
             <section className="cities__map map">
               <OffersMap cityCoordinates={activeCity.coordinates}/>
@@ -70,7 +76,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   loadOffers: (cityName) => ActionCreator.getOffers(cityName),
-  changeActiveCity: (cityName) => ActionCreator.setCity(cityName)
+  changeActiveCity: (cityName) => ActionCreator.setCity(cityName),
+  updateActiveCard: (offerId) => ActionCreator.updateActiveCard(offerId)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

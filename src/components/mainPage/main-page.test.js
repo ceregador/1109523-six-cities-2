@@ -21,6 +21,7 @@ it(`renders and connects correctly`, () => {
           activeCity={{name: `City1`}}
           loadOffers={() => null}
           changeActiveCity={() => null}
+          updateActiveCard={() => null}
         />)
     .toJSON();
 
@@ -35,6 +36,7 @@ it(`renders and connects correctly`, () => {
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`loadOffers`);
   expect(mapDispatchToProps).toHaveProperty(`changeActiveCity`);
+  expect(mapDispatchToProps).toHaveProperty(`updateActiveCard`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);
 
