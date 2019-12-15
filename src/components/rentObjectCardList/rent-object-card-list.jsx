@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
 import Sorting from '../sorting/sorting.jsx';
-import {sortingSelector} from '../../selectors/sorting-selector';
+import Selector from '../../selectors/selector';
 import propTypes from './prop-types';
 import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
 
@@ -34,7 +34,7 @@ const RentObjectCardList = ({offers, cityName, onActiveItemChange}) => {
 RentObjectCardList.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  offers: sortingSelector(state)
+  offers: Selector.cityOffersSortingSelector(state)
 });
 
 export default connect(mapStateToProps, null)(withActiveItem(RentObjectCardList));

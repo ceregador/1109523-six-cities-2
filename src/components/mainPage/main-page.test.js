@@ -11,8 +11,7 @@ jest.mock(`../cityPlaces/city-places.jsx`);
 jest.mock(`../citiesList/cities-list.jsx`);
 jest.mock(`../emptyCityPlaces/empty-city-places.jsx`);
 jest.mock(`react-redux`);
-jest.mock(`../../selectors/active-city-selector`);
-jest.mock(`../../selectors/is-city-offers-exist-selector`);
+jest.mock(`../../selectors/selector`);
 
 it(`renders CityPlaces and connects correctly`, () => {
   const tree = Renderer
@@ -21,7 +20,7 @@ it(`renders CityPlaces and connects correctly`, () => {
           cities={[{name: `City`}]}
           isCityOffersExist={true}
           activeCity={{name: `City1`}}
-          loadOffers={() => null}
+          getOffers={() => null}
           changeActiveCity={() => null}
         />)
     .toJSON();
@@ -32,11 +31,11 @@ it(`renders CityPlaces and connects correctly`, () => {
   const mapStateToProps = connect.mock.calls[0][0];
   const mappedProps = mapStateToProps({});
   expect(mappedProps).toHaveProperty(`cities`);
-  expect(mappedProps).toHaveProperty(`activeCity`);
+  expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`isCityOffersExist`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
-  expect(mapDispatchToProps).toHaveProperty(`loadOffers`);
+  expect(mapDispatchToProps).toHaveProperty(`getOffers`);
   expect(mapDispatchToProps).toHaveProperty(`changeActiveCity`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);
@@ -53,7 +52,7 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
           cities={[{name: `City`}]}
           isCityOffersExist={false}
           activeCity={{name: `City2`}}
-          loadOffers={() => null}
+          getOffers={() => null}
           changeActiveCity={() => null}
         />)
     .toJSON();
@@ -64,11 +63,11 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
   const mapStateToProps = connect.mock.calls[0][0];
   const mappedProps = mapStateToProps({});
   expect(mappedProps).toHaveProperty(`cities`);
-  expect(mappedProps).toHaveProperty(`activeCity`);
+  expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`isCityOffersExist`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
-  expect(mapDispatchToProps).toHaveProperty(`loadOffers`);
+  expect(mapDispatchToProps).toHaveProperty(`getOffers`);
   expect(mapDispatchToProps).toHaveProperty(`changeActiveCity`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);

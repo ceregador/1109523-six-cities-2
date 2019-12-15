@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 const withActiveItem = (Component) => {
   return function WithActiveItem(props) {
-    const {onChangeActiveItem, getDefaultItem = () => null} = props;
-    const [activeItem, updateActiveItem] = useState(getDefaultItem());
+    const {onChangeActiveItem} = props;
+    const [activeItem, updateActiveItem] = useState();
 
     const onHocChangeActiveItem = (item) => {
       if (item !== activeItem) {

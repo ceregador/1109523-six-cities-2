@@ -11,22 +11,6 @@ it(`action SET_CITY sets activeCityName properly`, () => {
   })).toHaveProperty(`activeCityName`, `newCity`);
 });
 
-it(`action GET_CITY_OFFERS sets cityOffers properly`, () => {
-  expect(reducer({
-    cityOffers: []
-  },
-  {
-    type: ACTION_TYPE.GET_CITY_OFFERS,
-    payload: [
-      {city: {name: `City1`}},
-      {city: {name: `City2`}}
-    ]
-  })).toHaveProperty(`cityOffers`, [
-    {city: {name: `City1`}},
-    {city: {name: `City2`}}
-  ]);
-});
-
 it(`action UPDATE_ACTIVE_CARD sets activeOfferId if the previous value was NULL`, () => {
   expect(reducer({
     activeOfferId: null

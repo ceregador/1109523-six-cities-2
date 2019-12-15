@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
 import ActionCreator from '../../actions/action-creator';
-import {activeCitySelector} from '../../selectors/active-city-selector';
+import Selector from '../../selectors/selector';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
 import OffersMap from '../offersMap/offers-map.jsx';
 import propTypes from './prop-types.js';
@@ -27,7 +27,7 @@ const CityPlaces = ({activeCity, updateActiveCard}) => {
 CityPlaces.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  activeCity: activeCitySelector(state)
+  activeCity: Selector.activeCitySelector(state)
 });
 
 const mapDispatchToProps = {

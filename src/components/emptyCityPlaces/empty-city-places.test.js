@@ -6,7 +6,7 @@ it(`renders correctly`, () => {
   const tree = Renderer
     .create(
         <EmptyCityPlaces
-          cityName={`City`}
+          activeCityName={`City`}
         />)
     .toJSON();
   expect(tree).toMatchSnapshot();

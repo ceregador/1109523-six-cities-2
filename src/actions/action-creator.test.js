@@ -8,12 +8,6 @@ it(`returns expected SET_CITY action`, () => {
   });
 });
 
-it(`returns expected GET_CITY_OFFERS action`, () => {
-  const action = ActionCreator.getOffers(`Amsterdam`);
-  expect(action.type).toBe(ACTION_TYPE.GET_CITY_OFFERS);
-  expect(action.payload.length).toBe(4);
-});
-
 it(`returns expected SET_SORTING_TYPE action`, () => {
   expect(ActionCreator.setSortingType(`Popular`)).toMatchObject({
     type: ACTION_TYPE.SET_SORTING_TYPE,
