@@ -1,20 +1,16 @@
 import ACTION_TYPE from './action-type';
-import {getOffersByCityName} from './offers-extractor';
-import rentObjects from '../mocks/offers';
 
 const ActionCreator = {
+  fetchOffers: (offers) => {
+    return {
+      type: ACTION_TYPE.FETCH_OFFERS,
+      payload: offers
+    };
+  },
   setCity: (cityName) => {
     return {
       type: ACTION_TYPE.SET_CITY,
       payload: cityName
-    };
-  },
-  getOffers: (cityName) => {
-    const offers = getOffersByCityName(rentObjects, cityName);
-
-    return {
-      type: ACTION_TYPE.GET_CITY_OFFERS,
-      payload: offers
     };
   },
   setSortingType: (sortingType) => {

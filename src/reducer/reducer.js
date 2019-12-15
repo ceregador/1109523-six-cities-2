@@ -1,14 +1,11 @@
 import ACTION_TYPE from '../actions/action-type';
-import {getUniqueCitiesFromOffers, getOffersByCityName} from '../actions/offers-extractor';
+import {getUniqueCitiesFromOffers} from '../actions/offers-extractor';
 import SORTING_TYPE from '../actions/sorting-type';
-import rentObjects from '../mocks/offers';
-
-const cities = getUniqueCitiesFromOffers(rentObjects);
 
 const initialState = {
-  cities,
-  activeCityName: cities[0].name,
-  cityOffers: getOffersByCityName(rentObjects, cities[0].name),
+  cities: [],
+  activeCityName: null,
+  offers: [],
   sortingType: SORTING_TYPE.POPULAR,
   activeOfferId: null
 };
@@ -16,14 +13,23 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case ACTION_TYPE.SET_CITY:
-      return Object.assign({}, state, {
-        activeCityName: action.payload
-      });
+    case ACTION_TYPE.FETCH_OFFERS: {
+      const offers = action.payload;
+      const cities = getUniqueCitiesFromOffers(offers);
+      const defaultCityName = cities[0].name;
 
-    case ACTION_TYPE.GET_CITY_OFFERS:
       return Object.assign({}, state, {
-        cityOffers: action.payload
+        offers,
+        cities,
+        activeCityName: defaultCityName
+      });
+    }
+
+    case ACTION_TYPE.SET_CITY:
+      const activeCityName = action.payload;
+
+      return Object.assign({}, state, {
+        activeCityName
       });
 
     case ACTION_TYPE.SET_SORTING_TYPE:

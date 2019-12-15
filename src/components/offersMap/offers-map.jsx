@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {connect} from 'react-redux';
 import leaflet from 'leaflet';
-import {offersCoordinatesSelector} from '../../selectors/offers-coordinates-selector';
+import Selector from '../../selectors/selector';
 import propTypes from './prop-types';
 
 const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId}) => {
@@ -73,7 +73,7 @@ const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId}) => {
 OffersMap.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  offersCoordinates: offersCoordinatesSelector(state),
+  offersCoordinates: Selector.offersCoordinatesSelector(state),
   activeOfferId: state.activeOfferId
 });
 

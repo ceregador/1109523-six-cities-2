@@ -8,6 +8,7 @@ import Sorting from '../sorting/sorting.jsx';
 jest.mock(`../rentObjectCard/rent-object-card.jsx`);
 jest.mock(`../sorting/sorting.jsx`);
 jest.mock(`react-redux`);
+jest.mock(`../../selectors/selector`);
 
 it(`renders and connnects correctly`, () => {
   const tree = Renderer

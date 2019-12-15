@@ -5,6 +5,7 @@ import OffersMap from '../offersMap/offers-map.jsx';
 
 jest.mock(`../rentObjectCardList/rent-object-card-list.jsx`);
 jest.mock(`react-redux`);
+jest.mock(`../../selectors/selector`);
 
 it(`renders and connects correctly`, () => {
   const tree = Renderer

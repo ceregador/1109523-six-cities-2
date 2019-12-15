@@ -1,7 +1,7 @@
-import {requiredString} from '../../prop-types';
+import PropTypes from 'prop-types';
 
 const propTypes = {
-  cityName: requiredString
+  activeCityName: PropTypes.string
 };
 
 export default propTypes;

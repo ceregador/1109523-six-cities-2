@@ -1,21 +1,22 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {connect} from 'react-redux';
 import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
 import CityPlaces from '../cityPlaces/city-places.jsx';
 import propTypes from './prop-types';
 import CitiesList from '../citiesList/cities-list.jsx';
 import ActionCreator from '../../actions/action-creator';
-import {isCityOffersExistSelector} from '../../selectors/is-city-offers-exist-selector';
-import {citiesSelector} from '../../selectors/cities-selector';
-import {activeCitySelector} from '../../selectors/active-city-selector';
+import Selector from '../../selectors/selector';
+import {fetchOffers} from '../../operations';
 
-const MainPage = ({cities, isCityOffersExist, loadOffers, changeActiveCity, activeCity}) => {
+const MainPage = ({cities, activeCityName, isCityOffersExist, getOffers, changeActiveCity}) => {
+
+  useEffect(() => {
+    getOffers();
+  }, []);
 
   const onChangeCity = useCallback((cityName) => {
     changeActiveCity(cityName);
-    loadOffers(cityName);
   }, []);
-  const getDefaultCityName = useCallback(() => cities[0].name, []);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -48,13 +49,13 @@ const MainPage = ({cities, isCityOffersExist, loadOffers, changeActiveCity, acti
         <CitiesList
           cities={cities}
           onChangeActiveItem={onChangeCity}
-          getDefaultItem={getDefaultCityName}
+          activeItem={activeCityName}
         />
       </div>
       <div className="cities">
         {isCityOffersExist
           ? <CityPlaces/>
-          : <EmptyCityPlaces cityName={activeCity.name}/>}
+          : <EmptyCityPlaces/>}
       </div>
     </main>
   </div>;
@@ -63,13 +64,13 @@ const MainPage = ({cities, isCityOffersExist, loadOffers, changeActiveCity, acti
 MainPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  cities: citiesSelector(state),
-  activeCity: activeCitySelector(state),
-  isCityOffersExist: isCityOffersExistSelector(state)
+  cities: Selector.citiesSelector(state),
+  isCityOffersExist: Selector.isCityOffersExistSelector(state),
+  activeCityName: Selector.activeCityNameSelector(state)
 });
 
 const mapDispatchToProps = {
-  loadOffers: (cityName) => ActionCreator.getOffers(cityName),
+  getOffers: () => fetchOffers(),
   changeActiveCity: (cityName) => ActionCreator.setCity(cityName)
 };
 

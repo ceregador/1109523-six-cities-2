@@ -10,9 +10,10 @@ const propTypes = {
     name: requiredString,
     coordinates: PropTypes.arrayOf(requiredNumber)
   }),
+  activeCityName: PropTypes.string,
   isCityOffersExist: requiredBoolean,
-  loadOffers: requiredFunc,
-  changeActiveCity: requiredFunc
+  changeActiveCity: requiredFunc,
+  getOffers: requiredFunc
 };
 
 export default propTypes;
