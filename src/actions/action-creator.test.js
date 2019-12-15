@@ -1,6 +1,20 @@
 import ActionCreator from './action-creator';
 import ACTION_TYPE from './action-type';
 
+it(`returns expected FETCH_OFFERS action`, () => {
+  expect(ActionCreator.fetchOffers([{id: 1}])).toMatchObject({
+    type: ACTION_TYPE.FETCH_OFFERS,
+    payload: [{id: 1}]
+  });
+});
+
+it(`returns expected AUTHORIZE action`, () => {
+  expect(ActionCreator.authorize({name: `User`})).toMatchObject({
+    type: ACTION_TYPE.AUTHORIZE,
+    payload: {name: `User`}
+  });
+});
+
 it(`returns expected SET_CITY action`, () => {
   expect(ActionCreator.setCity(`City`)).toMatchObject({
     type: ACTION_TYPE.SET_CITY,

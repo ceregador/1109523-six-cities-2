@@ -6,9 +6,15 @@ import propTypes from './prop-types';
 import CitiesList from '../citiesList/cities-list.jsx';
 import ActionCreator from '../../actions/action-creator';
 import Selector from '../../selectors/selector';
-import {fetchOffers} from '../../operations';
+import Operation from '../../operation';
 
-const MainPage = ({cities, activeCityName, isCityOffersExist, getOffers, changeActiveCity}) => {
+const MainPage = ({
+  cities,
+  activeCityName,
+  isCityOffersExist,
+  getOffers,
+  changeActiveCity,
+  userEmail}) => {
 
   useEffect(() => {
     getOffers();
@@ -33,7 +39,7 @@ const MainPage = ({cities, activeCityName, isCityOffersExist, getOffers, changeA
                 <a className="header__nav-link header__nav-link--profile" href="#">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span className="header__user-name user__name">{userEmail}</span>
                 </a>
               </li>
             </ul>
@@ -66,11 +72,12 @@ MainPage.propTypes = propTypes;
 const mapStateToProps = (state) => ({
   cities: Selector.citiesSelector(state),
   isCityOffersExist: Selector.isCityOffersExistSelector(state),
-  activeCityName: Selector.activeCityNameSelector(state)
+  activeCityName: Selector.activeCityNameSelector(state),
+  userEmail: Selector.getUserEmailSelector(state)
 });
 
 const mapDispatchToProps = {
-  getOffers: () => fetchOffers(),
+  getOffers: () => Operation.fetchOffers(),
   changeActiveCity: (cityName) => ActionCreator.setCity(cityName)
 };
 

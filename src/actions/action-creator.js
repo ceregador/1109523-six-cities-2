@@ -7,6 +7,12 @@ const ActionCreator = {
       payload: offers
     };
   },
+  authorize: (userData) => {
+    return {
+      type: ACTION_TYPE.AUTHORIZE,
+      payload: userData
+    };
+  },
   setCity: (cityName) => {
     return {
       type: ACTION_TYPE.SET_CITY,

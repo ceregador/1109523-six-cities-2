@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders MainPage if authorized and connects correctly 1`] = `null`;
+
+exports[`renders SignIn page if not authorized and connects correctly 1`] = `null`;

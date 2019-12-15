@@ -3,6 +3,8 @@ import {getUniqueCitiesFromOffers} from '../actions/offers-extractor';
 import SORTING_TYPE from '../actions/sorting-type';
 
 const initialState = {
+  isAuthorized: false,
+  user: null,
   cities: [],
   activeCityName: null,
   offers: [],
@@ -12,6 +14,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ACTION_TYPE.AUTHORIZE: {
+      return Object.assign({}, state, {
+        isAuthorized: true,
+        user: action.payload
+      });
+    }
 
     case ACTION_TYPE.FETCH_OFFERS: {
       const offers = action.payload;
