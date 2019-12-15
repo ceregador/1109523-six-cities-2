@@ -9,7 +9,7 @@ import propTypes from './prop-types.js';
 const CityPlaces = ({activeCity, updateActiveCard}) => {
   const onChangeActiveCard = useCallback((offerId) => {
     updateActiveCard(offerId);
-  }, []);
+  }, [updateActiveCard]);
 
   return <div className="cities__places-container container">
     <RentObjectCardList
