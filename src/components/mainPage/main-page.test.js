@@ -20,7 +20,7 @@ it(`renders CityPlaces and connects correctly`, () => {
           cities={[{name: `City`}]}
           isCityOffersExist={true}
           activeCity={{name: `City1`}}
-          getOffers={() => null}
+          getOffers={() => undefined}
           changeActiveCity={() => null}
         />)
     .toJSON();
@@ -52,7 +52,7 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
           cities={[{name: `City`}]}
           isCityOffersExist={false}
           activeCity={{name: `City2`}}
-          getOffers={() => null}
+          getOffers={() => undefined}
           changeActiveCity={() => null}
         />)
     .toJSON();
