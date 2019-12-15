@@ -1,4 +1,4 @@
-import {requiredString, requiredFunc, requiredNumber} from '../../prop-types';
+import {requiredString, requiredFunc, requiredNumber, requiredBoolean} from '../../prop-types';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -10,6 +10,7 @@ const propTypes = {
     name: requiredString,
     coordinates: PropTypes.arrayOf(requiredNumber)
   }),
+  isCityOffersExist: requiredBoolean,
   loadOffers: requiredFunc,
   changeActiveCity: requiredFunc
 };

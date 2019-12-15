@@ -1,22 +1,21 @@
 import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
-import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
+import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
+import CityPlaces from '../cityPlaces/city-places.jsx';
 import propTypes from './prop-types';
-import OffersMap from '../offersMap/offers-map.jsx';
 import CitiesList from '../citiesList/cities-list.jsx';
 import ActionCreator from '../../actions/action-creator';
+import {isCityOffersExistSelector} from '../../selectors/is-city-offers-exist-selector';
+import {citiesSelector} from '../../selectors/cities-selector';
 import {activeCitySelector} from '../../selectors/active-city-selector';
 
-const MainPage = ({cities, loadOffers, activeCity, changeActiveCity, updateActiveCard}) => {
+const MainPage = ({cities, isCityOffersExist, loadOffers, changeActiveCity, activeCity}) => {
 
   const onChangeCity = useCallback((cityName) => {
     changeActiveCity(cityName);
     loadOffers(cityName);
   }, []);
   const getDefaultCityName = useCallback(() => cities[0].name, []);
-  const onChangeActiveCard = useCallback((offerId) => {
-    updateActiveCard(offerId);
-  }, []);
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -41,7 +40,9 @@ const MainPage = ({cities, loadOffers, activeCity, changeActiveCity, updateActiv
         </div>
       </div>
     </header>
-    <main className="page__main page__main--index">
+    <main className={isCityOffersExist
+      ? `page__main page__main--index`
+      : `page__main page__main--index page__main--index-empty`}>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <CitiesList
@@ -51,17 +52,9 @@ const MainPage = ({cities, loadOffers, activeCity, changeActiveCity, updateActiv
         />
       </div>
       <div className="cities">
-        <div className="cities__places-container container">
-          <RentObjectCardList
-            cityName={activeCity.name}
-            onChangeActiveItem={onChangeActiveCard}
-          />
-          <div className="cities__right-section">
-            <section className="cities__map map">
-              <OffersMap cityCoordinates={activeCity.coordinates}/>
-            </section>
-          </div>
-        </div>
+        {isCityOffersExist
+          ? <CityPlaces/>
+          : <EmptyCityPlaces cityName={activeCity.name}/>}
       </div>
     </main>
   </div>;
@@ -70,14 +63,14 @@ const MainPage = ({cities, loadOffers, activeCity, changeActiveCity, updateActiv
 MainPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
+  cities: citiesSelector(state),
   activeCity: activeCitySelector(state),
-  cities: state.cities
+  isCityOffersExist: isCityOffersExistSelector(state)
 });
 
 const mapDispatchToProps = {
   loadOffers: (cityName) => ActionCreator.getOffers(cityName),
-  changeActiveCity: (cityName) => ActionCreator.setCity(cityName),
-  updateActiveCard: (offerId) => ActionCreator.updateActiveCard(offerId)
+  changeActiveCity: (cityName) => ActionCreator.setCity(cityName)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
