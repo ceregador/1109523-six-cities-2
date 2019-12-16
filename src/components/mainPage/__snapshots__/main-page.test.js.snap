@@ -36,19 +36,7 @@ exports[`renders CityPlaces and connects correctly 1`] = `
           >
             <li
               className="header__nav-item user"
-            >
-              <a
-                className="header__nav-link header__nav-link--profile"
-                href="#"
-              >
-                <div
-                  className="header__avatar-wrapper user__avatar-wrapper"
-                />
-                <span
-                  className="header__user-name user__name"
-                />
-              </a>
-            </li>
+            />
           </ul>
         </nav>
       </div>
@@ -108,19 +96,7 @@ exports[`renders EmptyCityPlaces and connects correctly 1`] = `
           >
             <li
               className="header__nav-item user"
-            >
-              <a
-                className="header__nav-link header__nav-link--profile"
-                href="#"
-              >
-                <div
-                  className="header__avatar-wrapper user__avatar-wrapper"
-                />
-                <span
-                  className="header__user-name user__name"
-                />
-              </a>
-            </li>
+            />
           </ul>
         </nav>
       </div>

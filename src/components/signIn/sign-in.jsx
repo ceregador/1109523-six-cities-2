@@ -1,11 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import UserFavoritesNavigator from '../userFavoritesNavigator/user-favorites-navigator.jsx';
 import Operation from '../../operation';
 import Selector from '../../selectors/selector';
 import withForm from '../../hocs/withForm/with-form.jsx';
 import propTypes from './prop-types';
 
-const SignIn = ({formFields, onFormFieldChange, authorize}) => {
+const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
+
+  if (isAuthorized) {
+    return <Redirect to="/"/>;
+  }
 
   const onLoginButtonClick = (evt) => {
     evt.preventDefault();
@@ -44,11 +50,7 @@ const SignIn = ({formFields, onFormFieldChange, authorize}) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
-                  <span className="header__login">Sign in</span>
-                </a>
+                <UserFavoritesNavigator/>
               </li>
             </ul>
           </nav>

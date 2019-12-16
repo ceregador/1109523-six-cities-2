@@ -1,7 +1,6 @@
-import {requiredBoolean, requiredFunc} from '../../prop-types';
+import {requiredFunc} from '../../prop-types';
 
 const propTypes = {
-  isAuthorized: requiredBoolean,
   tryToAuthorize: requiredFunc
 };
 

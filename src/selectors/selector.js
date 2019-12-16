@@ -45,6 +45,6 @@ export default {
 
   getUserEmailSelector: createSelector(
       getUser,
-      (user) => user.email
+      (user) => !user ? null : user.email
   )
 };
