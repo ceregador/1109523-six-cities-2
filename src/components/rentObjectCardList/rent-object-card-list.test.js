@@ -8,7 +8,6 @@ import Sorting from '../sorting/sorting.jsx';
 jest.mock(`../rentObjectCard/rent-object-card.jsx`);
 jest.mock(`../sorting/sorting.jsx`);
 jest.mock(`react-redux`);
-jest.mock(`../../selectors/selector`);
 
 it(`renders and connnects correctly`, () => {
   const tree = Renderer
@@ -36,7 +35,7 @@ it(`renders and connnects correctly`, () => {
   expect(connect).toHaveBeenCalledWith(expect.any(Function), null);
 
   const mapStateToProps = connect.mock.calls[0][0];
-  const mappedProps = mapStateToProps({});
+  const mappedProps = mapStateToProps({offers: []});
   expect(mappedProps).toHaveProperty(`offers`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(RentObjectCardList);

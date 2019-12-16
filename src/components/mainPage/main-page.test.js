@@ -5,13 +5,14 @@ import Renderer from 'react-test-renderer';
 import CityPlaces from '../cityPlaces/city-places.jsx';
 import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
 import CitiesList from '../citiesList/cities-list.jsx';
+import UserFavoritesNavigator from '../userFavoritesNavigator/user-favorites-navigator.jsx';
 
 jest.mock(`../rentObjectCardList/rent-object-card-list.jsx`);
 jest.mock(`../cityPlaces/city-places.jsx`);
 jest.mock(`../citiesList/cities-list.jsx`);
 jest.mock(`../emptyCityPlaces/empty-city-places.jsx`);
+jest.mock(`../userFavoritesNavigator/user-favorites-navigator.jsx`);
 jest.mock(`react-redux`);
-jest.mock(`../../selectors/selector`);
 
 it(`renders CityPlaces and connects correctly`, () => {
   const tree = Renderer
@@ -29,7 +30,7 @@ it(`renders CityPlaces and connects correctly`, () => {
   expect(connect).toHaveBeenCalledWith(expect.any(Function), expect.any(Object));
 
   const mapStateToProps = connect.mock.calls[0][0];
-  const mappedProps = mapStateToProps({});
+  const mappedProps = mapStateToProps({offers: []});
   expect(mappedProps).toHaveProperty(`cities`);
   expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`isCityOffersExist`);
@@ -42,6 +43,7 @@ it(`renders CityPlaces and connects correctly`, () => {
 
   expect(CityPlaces).toHaveBeenCalled();
   expect(CitiesList).toHaveBeenCalled();
+  expect(UserFavoritesNavigator).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });
 
@@ -61,7 +63,7 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
   expect(connect).toHaveBeenCalledWith(expect.any(Function), expect.any(Object));
 
   const mapStateToProps = connect.mock.calls[0][0];
-  const mappedProps = mapStateToProps({});
+  const mappedProps = mapStateToProps({offers: []});
   expect(mappedProps).toHaveProperty(`cities`);
   expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`isCityOffersExist`);
@@ -74,5 +76,6 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
 
   expect(EmptyCityPlaces).toHaveBeenCalled();
   expect(CitiesList).toHaveBeenCalled();
+  expect(UserFavoritesNavigator).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });

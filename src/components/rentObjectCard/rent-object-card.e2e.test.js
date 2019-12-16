@@ -66,3 +66,25 @@ it(`Card's onActiveOfferChanged handler is called with NULL after mouse leave`, 
   card.simulate(`mouseLeave`, fakeEvent);
   expect(mouseEnterMock).toHaveBeenCalledWith(null);
 });
+
+it(`addToFavorites is called with correct parameters`, () => {
+  const addToFavoritesMock = jest.fn();
+  const rentObject = shallow(
+      <RentObjectCard
+        id={1}
+        name={``}
+        isPremium={false}
+        image={``}
+        type={``}
+        price={0}
+        rating={5}
+        isBookmarked={false}
+        onTitleClick={() => null}
+        onActiveOfferChanged={() => null}
+        addToFavorites={addToFavoritesMock}
+      />);
+
+  const addToFavoritesButton = rentObject.find(`.place-card__bookmark-button.button`);
+  addToFavoritesButton.simulate(`click`, {preventDefault: () => null});
+  expect(addToFavoritesMock).toHaveBeenCalledWith(1, true);
+});

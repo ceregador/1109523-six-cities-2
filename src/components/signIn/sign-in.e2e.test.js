@@ -2,6 +2,8 @@ import React from 'react';
 import {mount} from 'enzyme';
 import SignIn from '../signIn/sign-in.jsx';
 
+jest.mock(`../userFavoritesNavigator/user-favorites-navigator.jsx`);
+
 it(`SignIn component calls authorize at click of Login button`, () => {
   const authorizeMock = jest.fn();
 

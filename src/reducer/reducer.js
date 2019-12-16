@@ -34,6 +34,14 @@ const reducer = (state = initialState, action) => {
       });
     }
 
+    case ACTION_TYPE.ADD_TO_FAVORITES: {
+      const offers = state.offers.slice();
+      const editedOffer = offers.find((offer) => offer.id === action.payload.offerId);
+      editedOffer.isBookmarked = action.payload.isFavorite;
+
+      return Object.assign({}, state, {offers});
+    }
+
     case ACTION_TYPE.SET_CITY:
       const activeCityName = action.payload;
 

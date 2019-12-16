@@ -15,6 +15,13 @@ it(`returns expected AUTHORIZE action`, () => {
   });
 });
 
+it(`returns expected ADD_TO_FAVORITES action`, () => {
+  expect(ActionCreator.addToFavorites({offerId: 1, isFavorite: false})).toMatchObject({
+    type: ACTION_TYPE.ADD_TO_FAVORITES,
+    payload: {offerId: 1, isFavorite: false}
+  });
+});
+
 it(`returns expected SET_CITY action`, () => {
   expect(ActionCreator.setCity(`City`)).toMatchObject({
     type: ACTION_TYPE.SET_CITY,

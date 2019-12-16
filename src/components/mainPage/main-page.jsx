@@ -4,6 +4,7 @@ import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
 import CityPlaces from '../cityPlaces/city-places.jsx';
 import propTypes from './prop-types';
 import CitiesList from '../citiesList/cities-list.jsx';
+import UserFavoritesNavigator from '../userFavoritesNavigator/user-favorites-navigator.jsx';
 import ActionCreator from '../../actions/action-creator';
 import Selector from '../../selectors/selector';
 import Operation from '../../operation';
@@ -13,8 +14,7 @@ const MainPage = ({
   activeCityName,
   isCityOffersExist,
   getOffers,
-  changeActiveCity,
-  userEmail}) => {
+  changeActiveCity}) => {
 
   useEffect(() => {
     getOffers();
@@ -36,11 +36,7 @@ const MainPage = ({
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
-                  <span className="header__user-name user__name">{userEmail}</span>
-                </a>
+                <UserFavoritesNavigator/>
               </li>
             </ul>
           </nav>

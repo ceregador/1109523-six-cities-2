@@ -13,6 +13,12 @@ const ActionCreator = {
       payload: userData
     };
   },
+  addToFavorites: ({offerId, isFavorite}) => {
+    return {
+      type: ACTION_TYPE.ADD_TO_FAVORITES,
+      payload: {offerId, isFavorite}
+    };
+  },
   setCity: (cityName) => {
     return {
       type: ACTION_TYPE.SET_CITY,

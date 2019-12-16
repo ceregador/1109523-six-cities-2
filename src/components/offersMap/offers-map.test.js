@@ -5,7 +5,6 @@ import OffersMap from '../offersMap/offers-map.jsx';
 
 jest.mock(`../rentObjectCardList/rent-object-card-list.jsx`);
 jest.mock(`react-redux`);
-jest.mock(`../../selectors/selector`);
 
 it(`renders and connects correctly`, () => {
   const tree = Renderer
@@ -20,8 +19,9 @@ it(`renders and connects correctly`, () => {
   expect(connect).toHaveBeenCalledWith(expect.any(Function), null);
 
   const mapStateToProps = connect.mock.calls[0][0];
-  const mappedProps = mapStateToProps({cityOffers: []});
+  const mappedProps = mapStateToProps({offers: [], activeOfferId: null});
   expect(mappedProps).toHaveProperty(`offersCoordinates`);
+  expect(mappedProps).toHaveProperty(`activeOfferId`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(OffersMap);
 

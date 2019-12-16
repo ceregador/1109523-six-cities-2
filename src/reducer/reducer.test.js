@@ -30,6 +30,16 @@ it(`action AUTHORIZE sets isAuthorized and user`, () => {
   });
 });
 
+it(`action ADD_TO_FAVORITES updates offer's isBookmarked property`, () => {
+  expect(reducer({offers: [{id: 1, isBookmarked: false}]}, {
+    type: ACTION_TYPE.ADD_TO_FAVORITES,
+    payload: {
+      offerId: 1,
+      isFavorite: true
+    }
+  })).toMatchObject({offers: [{id: 1, isBookmarked: true}]});
+});
+
 it(`action SET_CITY sets activeCityName properly`, () => {
   expect(reducer({
     activeCityName: `oldCity`

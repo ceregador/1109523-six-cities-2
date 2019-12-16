@@ -8,6 +8,7 @@ import CitiesList from '../citiesList/cities-list.jsx';
 jest.mock(`../emptyCityPlaces/empty-city-places.jsx`);
 jest.mock(`../cityPlaces/city-places.jsx`);
 jest.mock(`../citiesList/cities-list.jsx`);
+jest.mock(`../userFavoritesNavigator/user-favorites-navigator.jsx`);
 
 it(`MainPage component calls getOffers`, () => {
   const getOffersMock = jest.fn();

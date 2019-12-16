@@ -1,5 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Rating from '../rating/rating.jsx';
+import Operation from '../../operation';
 import propTypes from './prop-types';
 
 const RentObjectCard = ({
@@ -12,7 +14,14 @@ const RentObjectCard = ({
   rating,
   isBookmarked,
   onTitleClick,
-  onActiveOfferChanged}) => {
+  onActiveOfferChanged,
+  addToFavorites}) => {
+
+  const onAddToFavoritesClickHandler = (evt) => {
+    evt.preventDefault();
+
+    addToFavorites(id, !isBookmarked);
+  };
 
   return <article className="cities__place-card place-card" id={id}
     onMouseEnter={() => onActiveOfferChanged(id)} onMouseLeave={() => onActiveOfferChanged(null)}>
@@ -30,7 +39,11 @@ const RentObjectCard = ({
           <b className="place-card__price-value">€{price}</b>
           <span className="place-card__price-text">/&nbsp;night</span>
         </div>
-        <button className={isBookmarked ? `place-card__bookmark-button place-card__bookmark-button--active button` : `place-card__bookmark-button button`} type="button">
+        <button
+          onClick={onAddToFavoritesClickHandler}
+          className={isBookmarked
+            ? `place-card__bookmark-button place-card__bookmark-button--active button`
+            : `place-card__bookmark-button button`} type="button">
           <svg className="place-card__bookmark-icon" width="18" height="19">
             <use xlinkHref="#icon-bookmark"></use>
           </svg>
@@ -48,4 +61,8 @@ const RentObjectCard = ({
 
 RentObjectCard.propTypes = propTypes;
 
-export default RentObjectCard;
+const mapDispatchToProps = {
+  addToFavorites: (offerId, status) => Operation.addToFavorites(offerId, status)
+};
+
+export default connect(null, mapDispatchToProps)(RentObjectCard);
