@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import Rating from '../rating/rating.jsx';
 import Operation from '../../operation';
 import propTypes from './prop-types';
@@ -50,9 +51,9 @@ const RentObjectCard = ({
           <span className="visually-hidden">To bookmarks</span>
         </button>
       </div>
-      <Rating value={rating}/>
+      <Rating isDetail={false} value={rating}/>
       <h2 onClick={onTitleClick} className="place-card__name">
-        <a href="#">{name}</a>
+        <Link to={`/offer/${id}`}>{name}</Link>
       </h2>
       <p className="place-card__type">{type}</p>
     </div>

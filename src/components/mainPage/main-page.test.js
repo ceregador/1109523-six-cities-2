@@ -5,13 +5,13 @@ import Renderer from 'react-test-renderer';
 import CityPlaces from '../cityPlaces/city-places.jsx';
 import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
 import CitiesList from '../citiesList/cities-list.jsx';
-import UserFavoritesNavigator from '../userFavoritesNavigator/user-favorites-navigator.jsx';
+import PageHeader from '../pageHeader/page-header.jsx';
 
 jest.mock(`../rentObjectCardList/rent-object-card-list.jsx`);
 jest.mock(`../cityPlaces/city-places.jsx`);
 jest.mock(`../citiesList/cities-list.jsx`);
 jest.mock(`../emptyCityPlaces/empty-city-places.jsx`);
-jest.mock(`../userFavoritesNavigator/user-favorites-navigator.jsx`);
+jest.mock(`../pageHeader/page-header.jsx`);
 jest.mock(`react-redux`);
 
 it(`renders CityPlaces and connects correctly`, () => {
@@ -43,7 +43,7 @@ it(`renders CityPlaces and connects correctly`, () => {
 
   expect(CityPlaces).toHaveBeenCalled();
   expect(CitiesList).toHaveBeenCalled();
-  expect(UserFavoritesNavigator).toHaveBeenCalled();
+  expect(PageHeader).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });
 
@@ -76,6 +76,6 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
 
   expect(EmptyCityPlaces).toHaveBeenCalled();
   expect(CitiesList).toHaveBeenCalled();
-  expect(UserFavoritesNavigator).toHaveBeenCalled();
+  expect(PageHeader).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });

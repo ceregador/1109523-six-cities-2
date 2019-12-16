@@ -37,7 +37,10 @@ const reducer = (state = initialState, action) => {
     case ACTION_TYPE.ADD_TO_FAVORITES: {
       const offers = state.offers.slice();
       const editedOffer = offers.find((offer) => offer.id === action.payload.offerId);
-      editedOffer.isBookmarked = action.payload.isFavorite;
+      const index = offers.findIndex((offer) => offer.id === editedOffer.id);
+      const newOffer = Object.assign({}, editedOffer, {
+        isBookmarked: action.payload.isFavorite});
+      offers[index] = newOffer;
 
       return Object.assign({}, state, {offers});
     }

@@ -8,6 +8,7 @@ const getOffers = (state) => state.offers;
 const getSortingType = (state) => state.sortingType;
 const getIsAuthorized = (state) => state.isAuthorized;
 const getUser = (state) => state.user;
+const getActiveOfferId = (state) => state.activeOfferId;
 
 export default {
   activeCityNameSelector: createSelector(
@@ -46,5 +47,10 @@ export default {
   getUserEmailSelector: createSelector(
       getUser,
       (user) => !user ? null : user.email
+  ),
+
+  getActiveOffer: createSelector(
+      [getActiveOfferId, getOffers],
+      (offerId, offers) => offers.find((offer) => offer.id === offerId)
   )
 };

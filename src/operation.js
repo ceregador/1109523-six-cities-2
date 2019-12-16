@@ -27,5 +27,12 @@ export default {
     api
       .post(`${ApiRoutes.FAVORITE}/${offerId}/${isFavorite ? 1 : 0}`)
       .then(() => dispatch(ActionCreator.addToFavorites({offerId, isFavorite})));
+  },
+
+  fetchDataForHotel: (offerId) => (dispatch, _, api) => {
+    api
+      .get(ApiRoutes.HOTELS)
+      .then((responseData) => dispatch(ActionCreator.fetchOffers(responseData.data.map((hotel) => Translator.translateOffer(hotel)))))
+      .then(() => dispatch(ActionCreator.updateActiveCard(offerId)));
   }
 };
