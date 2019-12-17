@@ -4,6 +4,7 @@ export const Routes = {
   MAIN_PAGE: `/`,
   LOGIN_PAGE: `/login`,
   FAVORITES: `/favorites`,
+  OFFER_DETAILS: `/offer/:offerId`
 };
 
 export const ApiRoutes = {
@@ -20,6 +21,7 @@ const privateRoutes = {
   ],
   post: [
     ApiRoutes.FAVORITE,
+    Routes.OFFER_DETAILS
   ]
 };
 

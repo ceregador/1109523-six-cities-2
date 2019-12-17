@@ -1,3 +1,5 @@
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
 export default {
   translateOffer: (serverOffer) => {
     return {
@@ -6,6 +8,12 @@ export default {
       city: {
         name: serverOffer.city.name,
         coordinates: Object.values(serverOffer.city.location).slice(0, 2)
+      },
+      host: {
+        id: serverOffer.host.id,
+        name: serverOffer.host.name,
+        isPro: serverOffer.host.is_pro,
+        avatarUrl: serverOffer.host.avatar_url
       },
       description: serverOffer.description,
       equipment: serverOffer.goods,
@@ -18,7 +26,8 @@ export default {
       price: serverOffer.price,
       rating: serverOffer.rating,
       name: serverOffer.title,
-      type: serverOffer.type
+      type: capitalize(serverOffer.type),
+      images: serverOffer.images
     };
   },
 

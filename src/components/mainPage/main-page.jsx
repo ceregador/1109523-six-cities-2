@@ -4,7 +4,7 @@ import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
 import CityPlaces from '../cityPlaces/city-places.jsx';
 import propTypes from './prop-types';
 import CitiesList from '../citiesList/cities-list.jsx';
-import UserFavoritesNavigator from '../userFavoritesNavigator/user-favorites-navigator.jsx';
+import PageHeader from '../pageHeader/page-header.jsx';
 import ActionCreator from '../../actions/action-creator';
 import Selector from '../../selectors/selector';
 import Operation from '../../operation';
@@ -25,24 +25,7 @@ const MainPage = ({
   }, []);
 
   return <div className="page page--gray page--main">
-    <header className="header">
-      <div className="container">
-        <div className="header__wrapper">
-          <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-            </a>
-          </div>
-          <nav className="header__nav">
-            <ul className="header__nav-list">
-              <li className="header__nav-item user">
-                <UserFavoritesNavigator/>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <PageHeader/>
     <main className={isCityOffersExist
       ? `page__main page__main--index`
       : `page__main page__main--index page__main--index-empty`}>

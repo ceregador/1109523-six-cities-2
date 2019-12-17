@@ -1,6 +1,6 @@
 import ACTION_TYPE from './action-type';
 
-const ActionCreator = {
+export default {
   fetchOffers: (offers) => {
     return {
       type: ACTION_TYPE.FETCH_OFFERS,
@@ -38,5 +38,3 @@ const ActionCreator = {
     };
   }
 };
-
-export default ActionCreator;

@@ -2,10 +2,10 @@ import React from 'react';
 import {connect, connectAdvanced} from 'react-redux';
 import SignIn from '../signIn/sign-in.jsx';
 import Renderer from 'react-test-renderer';
-import UserFavoritesNavigator from '../userFavoritesNavigator/user-favorites-navigator.jsx';
+import PageHeader from '../pageHeader/page-header.jsx';
 
 jest.mock(`react-redux`);
-jest.mock(`../userFavoritesNavigator/user-favorites-navigator.jsx`);
+jest.mock(`../pageHeader/page-header.jsx`);
 
 it(`renders and connects correctly`, () => {
   const tree = Renderer
@@ -30,6 +30,6 @@ it(`renders and connects correctly`, () => {
 
   expect(connectAdvanced).toHaveBeenCalledWith(SignIn);
 
-  expect(UserFavoritesNavigator).toHaveBeenCalled();
+  expect(PageHeader).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });

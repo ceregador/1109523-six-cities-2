@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`renders correctly with isDetail=false 1`] = `
 <div
   className="place-card__rating rating"
 >
@@ -20,5 +20,34 @@ exports[`renders correctly 1`] = `
       Rating
     </span>
   </div>
+  
+</div>
+`;
+
+exports[`renders correctly with isDetail=true 1`] = `
+<div
+  className="property__rating rating"
+>
+  <div
+    className="property__stars rating__stars"
+  >
+    <span
+      style={
+        Object {
+          "width": "60%",
+        }
+      }
+    />
+    <span
+      className="visually-hidden"
+    >
+      Rating
+    </span>
+  </div>
+  <span
+    className="property__rating-value rating__value"
+  >
+    2.5
+  </span>
 </div>
 `;
