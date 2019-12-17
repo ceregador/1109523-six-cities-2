@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PageHeader from '../pageHeader/page-header.jsx';
 import Rating from '../rating/rating.jsx';
 import ReviewList from '../reviewList/review-list.jsx';
+import ReviewForm from '../reviewForm/review-form.jsx';
 import OffersMap from '../offersMap/offers-map.jsx';
 import CardList from '../cardList/card-list.jsx';
 import Operation from '../../operation';
@@ -129,6 +130,7 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match, act
               </div>
             </div>
             <ReviewList/>
+            <ReviewForm/>
           </div>
         </div>
         <OffersMap

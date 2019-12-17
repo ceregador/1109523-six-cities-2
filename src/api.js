@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from './history';
-import {BaseApiUrl, isPrivateRoute} from './routeConstants';
+import {BaseApiUrl, isPrivateRoute, ApiRoutes} from './constants/routeConstants';
 
 const createAPI = () => {
   const api = axios.create({
@@ -14,7 +14,7 @@ const createAPI = () => {
   const onError = (err) => {
     if ((err.status === 401 || (err.response && err.response.status === 401)) && isPrivateRoute(err.config.method, err.config.url)
     ) {
-      history.push(`/login`);
+      history.push(ApiRoutes.LOGIN);
     }
   };
 

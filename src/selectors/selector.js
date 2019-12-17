@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 import {getOffersByCityName} from '../actions/offers-extractor';
 import sort from './sort';
+import Constants from '../constants/constants';
 
 const getActiveCityName = (state) => state.activeCityName;
 const getCities = (state) => state.cities;
@@ -60,8 +61,13 @@ export default {
       (offerId, offers) => offers.find((offer) => offer.id === offerId)
   ),
 
+  getActiveOfferId: createSelector(
+      getActiveOfferId,
+      (offerId) => offerId
+  ),
+
   getReviews: createSelector(
       getReviews,
-      (reviews) => reviews
+      (reviews) => reviews.slice(0, Constants.MAX_REVIEW_COUNT)
   )
 };
