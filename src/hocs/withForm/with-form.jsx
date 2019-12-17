@@ -6,9 +6,8 @@ const withFormFields = (Component) => {
     const [fields, updateField] = useState({});
 
     const onFormFieldChange = useCallback((fieldName, fieldValue) => {
-      updateField(Object.assign(fields, {
-        [fieldName]: fieldValue
-      }));
+      fields[fieldName] = fieldValue;
+      updateField(Object.assign({}, fields));
     }, []);
 
     return <Component

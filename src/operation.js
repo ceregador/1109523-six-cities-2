@@ -1,6 +1,6 @@
 import ActionCreator from './actions/action-creator';
 import Translator from './translator';
-import {ApiRoutes} from './routeConstants';
+import {ApiRoutes} from './constants/routeConstants';
 
 export default {
   fetchOffers: () => (dispatch, _, api) => {
@@ -30,6 +30,15 @@ export default {
     api
       .post(`${ApiRoutes.FAVORITE}/${offerId}/${isFavorite ? 1 : 0}`)
       .then(() => dispatch(ActionCreator.addToFavorites({offerId, isFavorite})));
+  },
+  addReview: (rating, text, offerId) => (dispatch, _, api) => {
+    api
+      .post(`${ApiRoutes.COMMENTS}/${offerId}`, {
+        rating,
+        comment: text})
+      .then((response) => dispatch(ActionCreator.fetchReviews(
+          response.data.map((review) => Translator.translateReview(review)))
+      ));
   },
 
   fetchDataForHotel: (offerId) => (dispatch, _, api) => {

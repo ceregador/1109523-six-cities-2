@@ -8,7 +8,7 @@ import {Router, Switch, Route} from 'react-router-dom';
 import history from '../../history';
 import propTypes from './prop-types';
 import Operation from '../../operation';
-import {Routes} from '../../routeConstants';
+import {Routes} from '../../constants/routeConstants';
 
 const App = ({tryToAuthorize}) => {
   useEffect(() => tryToAuthorize(), []);

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<label
+  className="reviews__rating-label form__rating-label"
+  htmlFor="1-star"
+  onClick={[Function]}
+  title=""
+>
+  <input
+    className="form__rating-input visually-hidden"
+    id="1-star"
+    name="rating"
+    type="radio"
+    value={1}
+  />
+  <svg
+    className="form__star-image"
+    height="33"
+    style={
+      Object {
+        "fill": "#c7c7c7",
+      }
+    }
+    width="37"
+  >
+    <use
+      xlinkHref="#icon-star"
+    />
+  </svg>
+</label>
+`;
