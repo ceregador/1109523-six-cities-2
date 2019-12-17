@@ -23,6 +23,7 @@ it(`renders CityPlaces and connects correctly`, () => {
           activeCity={{name: `City1`}}
           getOffers={() => undefined}
           changeActiveCity={() => null}
+          resetActiveCard={() => undefined}
         />)
     .toJSON();
 
@@ -34,10 +35,12 @@ it(`renders CityPlaces and connects correctly`, () => {
   expect(mappedProps).toHaveProperty(`cities`);
   expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`isCityOffersExist`);
+  expect(mappedProps).toHaveProperty(`userEmail`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`getOffers`);
   expect(mapDispatchToProps).toHaveProperty(`changeActiveCity`);
+  expect(mapDispatchToProps).toHaveProperty(`resetActiveCard`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);
 
@@ -56,6 +59,7 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
           activeCity={{name: `City2`}}
           getOffers={() => undefined}
           changeActiveCity={() => null}
+          resetActiveCard={() => undefined}
         />)
     .toJSON();
 
@@ -67,10 +71,12 @@ it(`renders EmptyCityPlaces and connects correctly`, () => {
   expect(mappedProps).toHaveProperty(`cities`);
   expect(mappedProps).toHaveProperty(`activeCityName`);
   expect(mappedProps).toHaveProperty(`isCityOffersExist`);
+  expect(mappedProps).toHaveProperty(`userEmail`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`getOffers`);
   expect(mapDispatchToProps).toHaveProperty(`changeActiveCity`);
+  expect(mapDispatchToProps).toHaveProperty(`resetActiveCard`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(MainPage);
 

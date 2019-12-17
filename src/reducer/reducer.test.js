@@ -18,6 +18,15 @@ it(`action FETCH_OFFERS sets offers`, () => {
   });
 });
 
+it(`action FETCH_REVIEWS sets reviews`, () => {
+  expect(reducer({}, {
+    type: ACTION_TYPE.FETCH_REVIEWS,
+    payload: [{comment: `Test`}]
+  })).toMatchObject({
+    reviews: [{comment: `Test`}]
+  });
+});
+
 it(`action AUTHORIZE sets isAuthorized and user`, () => {
   expect(reducer({isAuthorized: false}, {
     type: ACTION_TYPE.AUTHORIZE,
@@ -42,12 +51,12 @@ it(`action ADD_TO_FAVORITES updates offer's isBookmarked property`, () => {
 
 it(`action SET_CITY sets activeCityName properly`, () => {
   expect(reducer({
-    activeCityName: `oldCity`
+    offers: [{id: 1, city: {name: `City`}}]
   },
   {
     type: ACTION_TYPE.SET_CITY,
-    payload: `newCity`
-  })).toHaveProperty(`activeCityName`, `newCity`);
+    payload: 1
+  })).toHaveProperty(`activeCityName`, `City`);
 });
 
 it(`action UPDATE_ACTIVE_CARD sets activeOfferId if the previous value was NULL`, () => {

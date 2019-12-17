@@ -19,10 +19,22 @@ export default {
       payload: {offerId, isFavorite}
     };
   },
-  setCity: (cityName) => {
+  fetchReviews: (reviews) => {
+    return {
+      type: ACTION_TYPE.FETCH_REVIEWS,
+      payload: reviews
+    };
+  },
+  switchCity: (newCityName) => {
+    return {
+      type: ACTION_TYPE.SWITCH_CITY,
+      payload: newCityName
+    };
+  },
+  setCity: (offerId) => {
     return {
       type: ACTION_TYPE.SET_CITY,
-      payload: cityName
+      payload: offerId
     };
   },
   setSortingType: (sortingType) => {

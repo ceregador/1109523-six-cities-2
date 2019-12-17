@@ -16,8 +16,5 @@ exports[`renders and connnects correctly 1`] = `
      places to stay in 
     
   </b>
-  <div
-    className="cities__places-list places__list tabs__content"
-  />
 </section>
 `;

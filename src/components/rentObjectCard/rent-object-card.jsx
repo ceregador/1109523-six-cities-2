@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Rating from '../rating/rating.jsx';
 import Operation from '../../operation';
 import propTypes from './prop-types';
+import RATING_TYPE from '../../constants/rating-type';
 
 const RentObjectCard = ({
   id,
@@ -16,7 +17,9 @@ const RentObjectCard = ({
   isBookmarked,
   onTitleClick,
   onActiveOfferChanged,
-  addToFavorites}) => {
+  addToFavorites,
+  itemClassName,
+  imageWrapperClassName}) => {
 
   const onAddToFavoritesClickHandler = (evt) => {
     evt.preventDefault();
@@ -24,12 +27,12 @@ const RentObjectCard = ({
     addToFavorites(id, !isBookmarked);
   };
 
-  return <article className="cities__place-card place-card" id={id}
+  return <article className={itemClassName} id={id}
     onMouseEnter={() => onActiveOfferChanged(id)} onMouseLeave={() => onActiveOfferChanged(null)}>
     {isPremium && <div className="place-card__mark">
       <span>Premium</span>
     </div>}
-    <div className="cities__image-wrapper place-card__image-wrapper">
+    <div className={imageWrapperClassName}>
       <a href="#">
         <img className="place-card__image" src={image} width="260" height="200" alt="Place image"/>
       </a>
@@ -51,7 +54,7 @@ const RentObjectCard = ({
           <span className="visually-hidden">To bookmarks</span>
         </button>
       </div>
-      <Rating isDetail={false} value={rating}/>
+      <Rating type={RATING_TYPE.PREVIEW} value={rating}/>
       <h2 onClick={onTitleClick} className="place-card__name">
         <Link to={`/offer/${id}`}>{name}</Link>
       </h2>

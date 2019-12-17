@@ -2,10 +2,10 @@ import React from 'react';
 import {connect, connectAdvanced} from 'react-redux';
 import Renderer from 'react-test-renderer';
 import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx';
-import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
+import CardList from '../cardList/card-list.jsx';
 import Sorting from '../sorting/sorting.jsx';
 
-jest.mock(`../rentObjectCard/rent-object-card.jsx`);
+jest.mock(`../cardList/card-list.jsx`);
 jest.mock(`../sorting/sorting.jsx`);
 jest.mock(`react-redux`);
 
@@ -40,7 +40,7 @@ it(`renders and connnects correctly`, () => {
 
   expect(connectAdvanced).toHaveBeenCalledWith(RentObjectCardList);
 
-  expect(RentObjectCard).toHaveBeenCalled();
+  expect(CardList).toHaveBeenCalled();
   expect(Sorting).toHaveBeenCalled();
   expect(tree).toMatchSnapshot();
 });

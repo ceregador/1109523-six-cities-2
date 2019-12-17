@@ -1,29 +1,37 @@
 import React, {useRef, useEffect} from 'react';
 import {connect} from 'react-redux';
 import leaflet from 'leaflet';
-import Selector from '../../selectors/selector';
 import propTypes from './prop-types';
 
-const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId}) => {
+const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId, className}) => {
   const mapRef = useRef();
   const markersRef = useRef();
   const isComponentUpdate = useRef(false);
 
   const zoom = 12;
   const icon = leaflet.icon({
-    iconUrl: `img/pin.svg`,
+    iconUrl: `/img/pin.svg`,
     iconSize: [30, 30]
   });
   const activeIcon = leaflet.icon({
-    iconUrl: `img/pin-active.svg`,
+    iconUrl: `/img/pin-active.svg`,
     iconSize: [30, 30]
   });
+
+  const highlightCurrentOfferMarker = () => {
+    markersRef.current
+          .find((marker) => marker.options.offerId === activeOfferId)
+          .setIcon(activeIcon);
+  };
+  const paintOverMarkers = () => {
+    markersRef.current.forEach((m) => m.setIcon(icon));
+  };
 
   useEffect(() => {
     const map = leaflet.map(mapRef.current, {
       center: cityCoordinates,
       zoom,
-      zoomControl: false,
+      scrollWheelZoom: false,
       marker: true
     });
 
@@ -47,6 +55,10 @@ const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId}) => {
     leaflet.layerGroup(markers).addTo(map);
     markersRef.current = markers;
 
+    if (activeOfferId) {
+      highlightCurrentOfferMarker();
+    }
+
     return () => {
       map.off();
       map.remove();
@@ -56,24 +68,21 @@ const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId}) => {
   useEffect(() => {
     if (isComponentUpdate.current) {
       if (activeOfferId) {
-        markersRef.current.forEach((m) => m.setIcon(icon));
-        markersRef.current
-          .find((marker) => marker.options.offerId === activeOfferId)
-          .setIcon(activeIcon);
+        paintOverMarkers();
+        highlightCurrentOfferMarker();
       } else {
-        markersRef.current.forEach((m) => m.setIcon(icon));
+        paintOverMarkers();
       }
     }
     isComponentUpdate.current = true;
   }, [activeOfferId]);
 
-  return <div id="map" ref={mapRef} style={{height: `800px`}}/>;
+  return <section className={className} id="map" ref={mapRef}/>;
 };
 
 OffersMap.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  offersCoordinates: Selector.offersCoordinatesSelector(state),
   activeOfferId: state.activeOfferId
 });
 

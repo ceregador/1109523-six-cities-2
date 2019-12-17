@@ -26,8 +26,9 @@ it(`renders correctly`, () => {
   expect(connect).toHaveBeenCalledWith(expect.any(Function), expect.any(Object));
 
   const mapStateToProps = connect.mock.calls[0][0];
-  const mappedProps = mapStateToProps({cities: []});
+  const mappedProps = mapStateToProps({cities: [], offers: []});
   expect(mappedProps).toHaveProperty(`activeCity`);
+  expect(mappedProps).toHaveProperty(`offersCoordinates`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`updateActiveCard`);

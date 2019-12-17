@@ -21,7 +21,8 @@ it(`renders correctly`, () => {
             price={0}
             rating={4.5}
             isBookmarked={false}
-            onTitleClick={() =>null}
+            itemClassName={``}
+            imageWrapperClassName={``}
             onActiveOfferChanged={() => null}
           />
         </MemoryRouter>)

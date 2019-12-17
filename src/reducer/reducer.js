@@ -1,5 +1,5 @@
 import ACTION_TYPE from '../actions/action-type';
-import {getUniqueCitiesFromOffers} from '../actions/offers-extractor';
+import {getUniqueCitiesFromOffers, getCityNameByOfferId} from '../actions/offers-extractor';
 import SORTING_TYPE from '../actions/sorting-type';
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   cities: [],
   activeCityName: null,
   offers: [],
+  currentReviews: [],
   sortingType: SORTING_TYPE.POPULAR,
   activeOfferId: null
 };
@@ -45,11 +46,21 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {offers});
     }
 
-    case ACTION_TYPE.SET_CITY:
+    case ACTION_TYPE.FETCH_REVIEWS: {
+      return Object.assign({}, state, {
+        currentReviews: action.payload});
+    }
+
+    case ACTION_TYPE.SWITCH_CITY:
       const activeCityName = action.payload;
 
       return Object.assign({}, state, {
         activeCityName
+      });
+
+    case ACTION_TYPE.SET_CITY:
+      return Object.assign({}, state, {
+        activeCityName: getCityNameByOfferId(state.offers, action.payload)
       });
 
     case ACTION_TYPE.SET_SORTING_TYPE:

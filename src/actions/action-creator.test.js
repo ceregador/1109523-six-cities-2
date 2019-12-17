@@ -23,8 +23,15 @@ it(`returns expected ADD_TO_FAVORITES action`, () => {
 });
 
 it(`returns expected SET_CITY action`, () => {
-  expect(ActionCreator.setCity(`City`)).toMatchObject({
+  expect(ActionCreator.setCity(1)).toMatchObject({
     type: ACTION_TYPE.SET_CITY,
+    payload: 1
+  });
+});
+
+it(`returns expected SET_CITY action`, () => {
+  expect(ActionCreator.switchCity(`City`)).toMatchObject({
+    type: ACTION_TYPE.SWITCH_CITY,
     payload: `City`
   });
 });

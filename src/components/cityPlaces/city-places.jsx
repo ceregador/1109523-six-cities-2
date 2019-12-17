@@ -6,7 +6,7 @@ import RentObjectCardList from '../rentObjectCardList/rent-object-card-list.jsx'
 import OffersMap from '../offersMap/offers-map.jsx';
 import propTypes from './prop-types.js';
 
-const CityPlaces = ({activeCity, updateActiveCard}) => {
+const CityPlaces = ({activeCity, updateActiveCard, offersCoordinates}) => {
   const onChangeActiveCard = useCallback((offerId) => {
     updateActiveCard(offerId);
   }, [updateActiveCard]);
@@ -17,9 +17,11 @@ const CityPlaces = ({activeCity, updateActiveCard}) => {
       onChangeActiveItem={onChangeActiveCard}
     />
     <div className="cities__right-section">
-      <section className="cities__map map">
-        <OffersMap cityCoordinates={activeCity.coordinates}/>
-      </section>
+      <OffersMap
+        offersCoordinates={offersCoordinates}
+        cityCoordinates={activeCity.coordinates}
+        className={`cities__map map`}
+      />
     </div>
   </div>;
 };
@@ -27,7 +29,8 @@ const CityPlaces = ({activeCity, updateActiveCard}) => {
 CityPlaces.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  activeCity: Selector.activeCitySelector(state)
+  activeCity: Selector.activeCitySelector(state),
+  offersCoordinates: Selector.offersCoordinatesSelector(state)
 });
 
 const mapDispatchToProps = {
