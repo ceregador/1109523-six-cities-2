@@ -23,7 +23,7 @@ it(`action FETCH_REVIEWS sets reviews`, () => {
     type: ACTION_TYPE.FETCH_REVIEWS,
     payload: [{comment: `Test`}]
   })).toMatchObject({
-    reviews: [{comment: `Test`}]
+    currentReviews: [{comment: `Test`}]
   });
 });
 
