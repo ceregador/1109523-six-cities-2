@@ -9,8 +9,9 @@ const propTypes = {
   price: requiredNumber,
   rating: requiredNumber,
   isBookmarked: requiredBoolean,
-  onTitleClick: requiredFunc,
-  onActiveOfferChanged: requiredFunc
+  onActiveOfferChanged: requiredFunc,
+  itemClassName: requiredString,
+  imageWrapperClassName: requiredString
 };
 
 export default propTypes;

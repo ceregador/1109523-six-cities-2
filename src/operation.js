@@ -7,20 +7,23 @@ export default {
     api
       .get(ApiRoutes.HOTELS)
       .then((responseData) => dispatch(
-          ActionCreator.fetchOffers(responseData.data.map((hotel) => Translator.translateOffer(hotel)))));
+          ActionCreator.fetchOffers(
+              responseData.data.map((hotel) => Translator.translateOffer(hotel)))));
   },
 
   tryToAuthorize: () => (dispatch, _, api) => {
     api
       .get(ApiRoutes.LOGIN)
-      .then((responseData) => dispatch(ActionCreator.authorize(Translator.translateUser(responseData.data))))
+      .then((responseData) => dispatch(
+          ActionCreator.authorize(Translator.translateUser(responseData.data))))
       .catch(() => {});
   },
 
   authorize: (email, password) => (dispatch, _, api) => {
     api
       .post(ApiRoutes.LOGIN, ({email, password}))
-      .then((responseData) => dispatch(ActionCreator.authorize(Translator.translateUser(responseData.data))));
+      .then((responseData) => dispatch(
+          ActionCreator.authorize(Translator.translateUser(responseData.data))));
   },
 
   addToFavorites: (offerId, isFavorite) => (dispatch, _, api) => {
@@ -32,7 +35,12 @@ export default {
   fetchDataForHotel: (offerId) => (dispatch, _, api) => {
     api
       .get(ApiRoutes.HOTELS)
-      .then((responseData) => dispatch(ActionCreator.fetchOffers(responseData.data.map((hotel) => Translator.translateOffer(hotel)))))
-      .then(() => dispatch(ActionCreator.updateActiveCard(offerId)));
+      .then((responseData) => dispatch(ActionCreator.fetchOffers(
+          responseData.data.map((hotel) => Translator.translateOffer(hotel)))))
+      .then(() => dispatch(ActionCreator.updateActiveCard(offerId)))
+      .then(() => dispatch(ActionCreator.setCity(offerId)))
+      .then(() => api.get(`${ApiRoutes.COMMENTS}/${offerId}`))
+      .then((responseData) => dispatch(ActionCreator.fetchReviews(
+          responseData.data.map((review) => Translator.translateReview(review)))));
   }
 };

@@ -2,17 +2,19 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PageHeader from '../pageHeader/page-header.jsx';
 import Rating from '../rating/rating.jsx';
+import ReviewList from '../reviewList/review-list.jsx';
+import OffersMap from '../offersMap/offers-map.jsx';
+import CardList from '../cardList/card-list.jsx';
 import Operation from '../../operation';
 import Selector from '../../selectors/selector';
 import propTypes from './prop-types';
-import Constants from '../../constants';
+import Constants from '../../constants/constants';
+import RATING_TYPE from '../../constants/rating-type';
 
-const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match}) => {
+const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match, activeCity, cityOffers}) => {
 
   useEffect(() => {
-    if (!offer) {
-      fetchDataForHotel(parseInt(match.params.offerId, Constants.DECIMAL_RADIX));
-    }
+    fetchDataForHotel(parseInt(match.params.offerId, Constants.DECIMAL_RADIX));
   }, []);
 
   if (!offer) {
@@ -53,6 +55,16 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match}) =>
     </button>;
   };
 
+  const neighboringOffers = cityOffers
+    .filter((cityOffer) => cityOffer.id !== offer.id)
+    .slice(0, 3);
+
+  const neighboringOfferCoordinates =
+    neighboringOffers.map((cityOffer) => ({
+      offerId: cityOffer.id,
+      coordinates: cityOffer.coordinates}));
+  neighboringOfferCoordinates.push({offerId: offer.id, coordinates: offer.coordinates});
+
   return <div className="page">
     <PageHeader/>
     <main className="page__main page__main--property">
@@ -73,7 +85,7 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match}) =>
               <h1 className="property__name">{name}</h1>
               {renderIsFavoriteButton(isBookmarked)}
             </div>
-            <Rating isDetail={true} value={rating}/>
+            <Rating type={RATING_TYPE.DETAILS} value={rating}/>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
                 {type}
@@ -116,8 +128,23 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match}) =>
                 </p>
               </div>
             </div>
+            <ReviewList/>
           </div>
         </div>
+        <OffersMap
+          offersCoordinates={neighboringOfferCoordinates}
+          cityCoordinates={activeCity.coordinates}
+          className={`property__map map`}
+        />
+      </section>
+      <section className="near-places places">
+        <h2 className="near-places__title">Other places in the neighbourhood</h2>
+        <CardList
+          offers={neighboringOffers}
+          containerClassName={`near-places__list places__list`}
+          itemClassName={`near-places__card place-card`}
+          imageWrapperClassName={`near-places__image-wrapper place-card__image-wrapper`}
+          onActiveItemChange={() => null}/>
       </section>
     </main>
   </div>;
@@ -126,7 +153,9 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match}) =>
 RentObjectDetails.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-  offer: Selector.getActiveOffer(state)
+  offer: Selector.getActiveOffer(state),
+  activeCity: Selector.activeCitySelector(state),
+  cityOffers: Selector.cityOffersSelector(state)
 });
 
 const mapDispatchToProps = {

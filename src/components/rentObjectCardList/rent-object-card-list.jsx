@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
 import Sorting from '../sorting/sorting.jsx';
+import CardList from '../cardList/card-list.jsx';
 import Selector from '../../selectors/selector';
 import propTypes from './prop-types';
 import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
@@ -12,22 +12,12 @@ const RentObjectCardList = ({offers, cityName, onActiveItemChange}) => {
     <h2 className="visually-hidden">Places</h2>
     <b className="places__found">{offers.length} places to stay in {cityName}</b>
     <Sorting />
-    <div className="cities__places-list places__list tabs__content">
-      {
-        offers.map((o) =><RentObjectCard
-          key={o.id}
-          id={o.id}
-          name={o.name}
-          type={o.type}
-          image={o.image}
-          price={o.price}
-          rating={o.rating}
-          isPremium={o.isPremium}
-          isBookmarked={o.isBookmarked}
-          onActiveOfferChanged={onActiveItemChange}
-          onTitleClick={() => null}/>)
-      }
-    </div>
+    <CardList
+      offers={offers}
+      containerClassName={`cities__places-list places__list tabs__content`}
+      itemClassName={`cities__place-card place-card`}
+      imageWrapperClassName={`cities__image-wrapper place-card__image-wrapper`}
+      onActiveItemChange={onActiveItemChange}/>
   </section>;
 };
 

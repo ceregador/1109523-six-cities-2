@@ -13,4 +13,8 @@ const getOffersByCityName = (offers, cityName) => {
   return offers.filter((offer) => offer.city.name === cityName);
 };
 
-export {getUniqueCitiesFromOffers, getOffersByCityName};
+const getCityNameByOfferId = (offers, offerId) => {
+  return offers.find((offer) => offer.id === offerId).city.name;
+};
+
+export {getUniqueCitiesFromOffers, getOffersByCityName, getCityNameByOfferId};

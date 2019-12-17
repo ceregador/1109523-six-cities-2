@@ -9,6 +9,7 @@ const getSortingType = (state) => state.sortingType;
 const getIsAuthorized = (state) => state.isAuthorized;
 const getUser = (state) => state.user;
 const getActiveOfferId = (state) => state.activeOfferId;
+const getReviews = (state) => state.currentReviews;
 
 export default {
   activeCityNameSelector: createSelector(
@@ -39,6 +40,11 @@ export default {
       [getOffers, getActiveCityName, getSortingType],
       (offers, cityName, sortType) => sort(getOffersByCityName(offers, cityName), sortType)),
 
+  cityOffersSelector: createSelector(
+      [getOffers, getActiveCityName],
+      (offers, cityName) => getOffersByCityName(offers, cityName)
+  ),
+
   isAuthorizedSelector: createSelector(
       getIsAuthorized,
       (isAuthorized) => isAuthorized
@@ -52,5 +58,10 @@ export default {
   getActiveOffer: createSelector(
       [getActiveOfferId, getOffers],
       (offerId, offers) => offers.find((offer) => offer.id === offerId)
+  ),
+
+  getReviews: createSelector(
+      getReviews,
+      (reviews) => reviews
   )
 };

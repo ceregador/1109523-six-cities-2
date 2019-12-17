@@ -14,7 +14,9 @@ it(`Card's onActiveOfferChanged handler is called with id after mouse enter`, ()
         price={0}
         rating={5}
         isBookmarked={false}
-        onTitleClick={() => null}
+        containerClassName={`cities__places-list places__list tabs__content`}
+        itemClassName={`cities__place-card place-card`}
+        imageWrapperClassName={`cities__image-wrapper place-card__image-wrapper`}
         onActiveOfferChanged={mouseEnterMock}
       />);
 
@@ -36,7 +38,9 @@ it(`Card's onActiveOfferChanged handler is called with NULL after mouse leave`, 
         price={0}
         rating={5}
         isBookmarked={false}
-        onTitleClick={() => null}
+        containerClassName={`cities__places-list places__list tabs__content`}
+        itemClassName={`cities__place-card place-card`}
+        imageWrapperClassName={`cities__image-wrapper place-card__image-wrapper`}
         onActiveOfferChanged={mouseEnterMock}
       />);
 
@@ -58,7 +62,9 @@ it(`addToFavorites is called with correct parameters`, () => {
         price={0}
         rating={5}
         isBookmarked={false}
-        onTitleClick={() => null}
+        containerClassName={`cities__places-list places__list tabs__content`}
+        itemClassName={`cities__place-card place-card`}
+        imageWrapperClassName={`cities__image-wrapper place-card__image-wrapper`}
         onActiveOfferChanged={() => null}
         addToFavorites={addToFavoritesMock}
       />);

@@ -20,7 +20,6 @@ it(`renders and connects correctly`, () => {
 
   const mapStateToProps = connect.mock.calls[0][0];
   const mappedProps = mapStateToProps({offers: [], activeOfferId: null});
-  expect(mappedProps).toHaveProperty(`offersCoordinates`);
   expect(mappedProps).toHaveProperty(`activeOfferId`);
 
   expect(connectAdvanced).toHaveBeenCalledWith(OffersMap);

@@ -39,5 +39,19 @@ export default {
       avatarUrl: serverUser.avatarUrl,
       isPro: serverUser.is_pro
     };
+  },
+
+  translateReview: (serverReview) => {
+    return {
+      rating: serverReview.rating,
+      comment: serverReview.comment,
+      reviewData: serverReview.date,
+      user: {
+        name: serverReview.user.name,
+        avatarUrl: serverReview.user.avatar_url,
+        isPro: serverReview.user.isPro
+      }
+
+    };
   }
 };

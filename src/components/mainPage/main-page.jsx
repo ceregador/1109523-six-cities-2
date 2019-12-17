@@ -14,11 +14,18 @@ const MainPage = ({
   activeCityName,
   isCityOffersExist,
   getOffers,
-  changeActiveCity}) => {
+  changeActiveCity,
+  resetActiveCard}) => {
 
   useEffect(() => {
-    getOffers();
+    if (!activeCityName) {
+      getOffers();
+    }
   }, []);
+
+  useEffect(() => {
+    resetActiveCard();
+  });
 
   const onChangeCity = useCallback((cityName) => {
     changeActiveCity(cityName);
@@ -57,7 +64,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   getOffers: () => Operation.fetchOffers(),
-  changeActiveCity: (cityName) => ActionCreator.setCity(cityName)
+  changeActiveCity: (cityName) => ActionCreator.switchCity(cityName),
+  resetActiveCard: () => ActionCreator.updateActiveCard(null)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
