@@ -5,7 +5,7 @@ import Operation from '../../operation';
 import Selector from '../../selectors/selector';
 import withForm from '../../hocs/withForm/with-form.jsx';
 import Constants from '../../constants/constants';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) => {
   const buttonRef = useRef();
@@ -103,7 +103,7 @@ const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) =
   </form>;
 };
 
-ReviewForm.propTypes = propTypes;
+ReviewForm.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   activeOfferId: Selector.getActiveOfferId(state)

@@ -1,6 +1,6 @@
 import {requiredNumber, requiredBoolean, requiredFunc, requiredString} from '../../prop-types';
 
-const propTypes = {
+export default {
   id: requiredNumber,
   name: requiredString,
   isPremium: requiredBoolean,
@@ -11,7 +11,6 @@ const propTypes = {
   isBookmarked: requiredBoolean,
   onActiveOfferChanged: requiredFunc,
   itemClassName: requiredString,
+  infoClassName: requiredString,
   imageWrapperClassName: requiredString
 };
-
-export default propTypes;

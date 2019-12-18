@@ -8,6 +8,13 @@ it(`returns expected FETCH_OFFERS action`, () => {
   });
 });
 
+it(`returns expected FETCH_REVIEWS action`, () => {
+  expect(ActionCreator.fetchReviews([{rating: 1, comment: 1}])).toMatchObject({
+    type: ACTION_TYPE.FETCH_REVIEWS,
+    payload: [{rating: 1, comment: 1}]
+  });
+});
+
 it(`returns expected AUTHORIZE action`, () => {
   expect(ActionCreator.authorize({name: `User`})).toMatchObject({
     type: ACTION_TYPE.AUTHORIZE,

@@ -20,6 +20,7 @@ it(`renders placeholder if offer is undefined and connects`, () => {
   const tree = Renderer
     .create(
         <RentObjectDetails
+          isAuthorized={false}
           offer={null}
           addToFavorites={jest.fn()}
           fetchDataForHotel={jest.fn()}
@@ -37,6 +38,7 @@ it(`renders placeholder if offer is undefined and connects`, () => {
   expect(mappedProps).toHaveProperty(`offer`);
   expect(mappedProps).toHaveProperty(`activeCity`);
   expect(mappedProps).toHaveProperty(`cityOffers`);
+  expect(mappedProps).toHaveProperty(`isAuthorized`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`addToFavorites`);
@@ -51,6 +53,7 @@ it(`renders and connects correctly`, () => {
   const tree = Renderer
     .create(
         <RentObjectDetails
+          isAuthorized={true}
           offer={{
             id: 1,
             name: ``,
@@ -85,6 +88,7 @@ it(`renders and connects correctly`, () => {
   expect(mappedProps).toHaveProperty(`offer`);
   expect(mappedProps).toHaveProperty(`activeCity`);
   expect(mappedProps).toHaveProperty(`cityOffers`);
+  expect(mappedProps).toHaveProperty(`isAuthorized`);
 
   const mapDispatchToProps = connect.mock.calls[0][1];
   expect(mapDispatchToProps).toHaveProperty(`addToFavorites`);

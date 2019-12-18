@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {connect} from 'react-redux';
 import EmptyCityPlaces from '../emptyCityPlaces/empty-city-places.jsx';
 import CityPlaces from '../cityPlaces/city-places.jsx';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import CitiesList from '../citiesList/cities-list.jsx';
 import PageHeader from '../pageHeader/page-header.jsx';
 import ActionCreator from '../../actions/action-creator';
@@ -53,7 +53,7 @@ const MainPage = ({
   </div>;
 };
 
-MainPage.propTypes = propTypes;
+MainPage.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   cities: Selector.citiesSelector(state),

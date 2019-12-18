@@ -1,6 +1,6 @@
 import React from 'react';
 import City from '../city/city.jsx';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
 
 const CitiesList = ({cities, onActiveItemChange, activeItem}) => {
@@ -18,6 +18,6 @@ const CitiesList = ({cities, onActiveItemChange, activeItem}) => {
   </section>;
 };
 
-CitiesList.propTypes = propTypes;
+CitiesList.propTypes = PropTypes;
 
 export default withActiveItem(CitiesList);

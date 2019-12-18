@@ -12,5 +12,6 @@ export default {
     isBookmarked: requiredBoolean})),
   containerClassName: requiredString,
   itemClassName: requiredString,
+  infoClassName: requiredString,
   imageWrapperClassName: requiredString
 };

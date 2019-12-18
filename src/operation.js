@@ -8,7 +8,7 @@ export default {
       .get(ApiRoutes.HOTELS)
       .then((responseData) => dispatch(
           ActionCreator.fetchOffers(
-              responseData.data.map((hotel) => Translator.translateOffer(hotel)))));
+              responseData.data.map((offer) => Translator.translateOffer(offer)))));
   },
 
   tryToAuthorize: () => (dispatch, _, api) => {
@@ -51,5 +51,12 @@ export default {
       .then(() => api.get(`${ApiRoutes.COMMENTS}/${offerId}`))
       .then((responseData) => dispatch(ActionCreator.fetchReviews(
           responseData.data.map((review) => Translator.translateReview(review)))));
+  },
+
+  fetchFavorites: () => (dispatch, _, api) => {
+    api
+      .get(ApiRoutes.FAVORITE)
+      .then((responseData) => dispatch(ActionCreator.fetchFavorites(
+          responseData.data.map((favoriteOffer) => Translator.translateOffer(favoriteOffer)))));
   }
 };

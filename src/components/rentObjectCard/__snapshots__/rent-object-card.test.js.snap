@@ -23,7 +23,7 @@ exports[`renders correctly 1`] = `
     </a>
   </div>
   <div
-    className="place-card__info"
+    className=""
   >
     <div
       className="place-card__price-wrapper"

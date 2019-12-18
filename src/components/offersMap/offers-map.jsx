@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import {connect} from 'react-redux';
 import leaflet from 'leaflet';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId, className}) => {
   const mapRef = useRef();
@@ -80,7 +80,7 @@ const OffersMap = ({cityCoordinates, offersCoordinates, activeOfferId, className
   return <section className={className} id="map" ref={mapRef}/>;
 };
 
-OffersMap.propTypes = propTypes;
+OffersMap.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   activeOfferId: state.activeOfferId

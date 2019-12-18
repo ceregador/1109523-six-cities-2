@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Sorting from '../sorting/sorting.jsx';
 import CardList from '../cardList/card-list.jsx';
 import Selector from '../../selectors/selector';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import withActiveItem from '../../hocs/withActiveItem/with-active-item.jsx';
 
 const RentObjectCardList = ({offers, cityName, onActiveItemChange}) => {
@@ -16,12 +16,13 @@ const RentObjectCardList = ({offers, cityName, onActiveItemChange}) => {
       offers={offers}
       containerClassName={`cities__places-list places__list tabs__content`}
       itemClassName={`cities__place-card place-card`}
+      infoClassName={`place-card__info`}
       imageWrapperClassName={`cities__image-wrapper place-card__image-wrapper`}
       onActiveItemChange={onActiveItemChange}/>
   </section>;
 };
 
-RentObjectCardList.propTypes = propTypes;
+RentObjectCardList.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   offers: Selector.cityOffersSortingSelector(state)

@@ -22,6 +22,7 @@ it(`renders correctly`, () => {
             rating={4.5}
             isBookmarked={false}
             itemClassName={``}
+            infoClassName={``}
             imageWrapperClassName={``}
             onActiveOfferChanged={() => null}
           />

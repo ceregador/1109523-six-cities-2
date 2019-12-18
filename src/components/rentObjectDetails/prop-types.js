@@ -1,7 +1,8 @@
 import {requiredFunc, requiredString, requiredNumber, requiredBoolean} from '../../prop-types';
 import PropTypes from 'prop-types';
 
-const propTypes = {
+export default {
+  isAuthorized: requiredBoolean,
   offer: PropTypes.shape({
     id: requiredNumber,
     name: requiredString,
@@ -48,5 +49,3 @@ const propTypes = {
     images: PropTypes.arrayOf(requiredString)
   }))
 };
-
-export default propTypes;

@@ -1,7 +1,7 @@
 import {requiredString, requiredBoolean, requiredNumber, requiredFunc} from '../../prop-types';
 import PropTypes from 'prop-types';
 
-const propTypes = {
+export default {
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: requiredNumber,
     name: requiredString,
@@ -14,5 +14,3 @@ const propTypes = {
   cityName: requiredString,
   onActiveItemChange: requiredFunc
 };
-
-export default propTypes;

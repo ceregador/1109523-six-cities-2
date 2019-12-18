@@ -5,7 +5,7 @@ import PageHeader from '../pageHeader/page-header.jsx';
 import Operation from '../../operation';
 import Selector from '../../selectors/selector';
 import withForm from '../../hocs/withForm/with-form.jsx';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
 
@@ -82,7 +82,7 @@ const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
   </div>;
 };
 
-SignIn.propTypes = propTypes;
+SignIn.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   isAuthorized: Selector.isAuthorizedSelector(state)

@@ -21,6 +21,7 @@ it(`renders correctly`, () => {
             }]}
             containerClassName={``}
             itemClassName={``}
+            infoClassName={``}
             imageWrapperClassName={``}
             onActiveItemChange={() => null}
           />)

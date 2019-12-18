@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Rating from '../rating/rating.jsx';
 import Operation from '../../operation';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import RATING_TYPE from '../../constants/rating-type';
 
 const RentObjectCard = ({
@@ -19,6 +19,7 @@ const RentObjectCard = ({
   onActiveOfferChanged,
   addToFavorites,
   itemClassName,
+  infoClassName,
   imageWrapperClassName}) => {
 
   const onAddToFavoritesClickHandler = (evt) => {
@@ -37,7 +38,7 @@ const RentObjectCard = ({
         <img className="place-card__image" src={image} width="260" height="200" alt="Place image"/>
       </a>
     </div>
-    <div className="place-card__info">
+    <div className={infoClassName}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">€{price}</b>
@@ -63,7 +64,7 @@ const RentObjectCard = ({
   </article>;
 };
 
-RentObjectCard.propTypes = propTypes;
+RentObjectCard.propTypes = PropTypes;
 
 const mapDispatchToProps = {
   addToFavorites: (offerId, status) => Operation.addToFavorites(offerId, status)

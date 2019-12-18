@@ -8,11 +8,18 @@ import OffersMap from '../offersMap/offers-map.jsx';
 import CardList from '../cardList/card-list.jsx';
 import Operation from '../../operation';
 import Selector from '../../selectors/selector';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import Constants from '../../constants/constants';
 import RATING_TYPE from '../../constants/rating-type';
 
-const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match, activeCity, cityOffers}) => {
+const RentObjectDetails = ({
+  isAuthorized,
+  offer,
+  addToFavorites,
+  fetchDataForHotel,
+  match,
+  activeCity,
+  cityOffers}) => {
 
   useEffect(() => {
     fetchDataForHotel(parseInt(match.params.offerId, Constants.DECIMAL_RADIX));
@@ -130,7 +137,7 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match, act
               </div>
             </div>
             <ReviewList/>
-            <ReviewForm/>
+            {isAuthorized && <ReviewForm/>}
           </div>
         </div>
         <OffersMap
@@ -145,6 +152,7 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match, act
           offers={neighboringOffers}
           containerClassName={`near-places__list places__list`}
           itemClassName={`near-places__card place-card`}
+          infoClassName={`place-card__info`}
           imageWrapperClassName={`near-places__image-wrapper place-card__image-wrapper`}
           onActiveItemChange={() => null}/>
       </section>
@@ -152,12 +160,13 @@ const RentObjectDetails = ({offer, addToFavorites, fetchDataForHotel, match, act
   </div>;
 };
 
-RentObjectDetails.propTypes = propTypes;
+RentObjectDetails.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   offer: Selector.getActiveOffer(state),
   activeCity: Selector.activeCitySelector(state),
-  cityOffers: Selector.cityOffersSelector(state)
+  cityOffers: Selector.cityOffersSelector(state),
+  isAuthorized: Selector.isAuthorizedSelector(state)
 });
 
 const mapDispatchToProps = {

@@ -2,7 +2,14 @@ import React from 'react';
 import RentObjectCard from '../rentObjectCard/rent-object-card.jsx';
 import PropTypes from './prop-types';
 
-const CardList = ({containerClassName, itemClassName, imageWrapperClassName, offers, onActiveItemChange}) => {
+const CardList = ({
+  containerClassName,
+  itemClassName,
+  infoClassName,
+  imageWrapperClassName,
+  offers,
+  onActiveItemChange}) => {
+
   return <div className={containerClassName}>
     {
       offers.map((o) =><RentObjectCard
@@ -17,6 +24,7 @@ const CardList = ({containerClassName, itemClassName, imageWrapperClassName, off
         isBookmarked={o.isBookmarked}
         onActiveOfferChanged={onActiveItemChange}
         itemClassName={itemClassName}
+        infoClassName={infoClassName}
         imageWrapperClassName={imageWrapperClassName}/>)
     }
   </div>;
