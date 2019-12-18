@@ -47,7 +47,6 @@ exports[`renders correctly 1`] = `
       <b
         className="reviews__text-amount"
       >
-        50
          characters
       </b>
       .

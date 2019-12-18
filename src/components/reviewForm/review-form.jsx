@@ -77,8 +77,8 @@ const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) =
     }
 
     return formFields[`rating`] > 0
-      && (comment.length >= Constants.DETAILS_PAGE_COMMENT_MIN_LENGTH
-      && comment.length <= Constants.DETAILS_PAGE_COMMENT_MAX_LENGTH);
+      && (comment.length >= Constants.REVIEW_FORM_CONSTRAINTS.DETAILS_PAGE_COMMENT_MIN_LENGTH
+      && comment.length <= Constants.REVIEW_FORM_CONSTRAINTS.DETAILS_PAGE_COMMENT_MAX_LENGTH);
   };
 
   return <form className="reviews__form form" action="post">
@@ -97,8 +97,8 @@ const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) =
       id="review"
       name="review"
       placeholder="Tell how was your stay, what you like and what can be improved"
-      minLength={Constants.DETAILS_PAGE_COMMENT_MIN_LENGTH}
-      maxLength={Constants.DETAILS_PAGE_COMMENT_MAX_LENGTH}
+      minLength={Constants.REVIEW_FORM_CONSTRAINTS.DETAILS_PAGE_COMMENT_MIN_LENGTH}
+      maxLength={Constants.REVIEW_FORM_CONSTRAINTS.DETAILS_PAGE_COMMENT_MAX_LENGTH}
       required
       onChange={onChangeComment}
     />
