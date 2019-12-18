@@ -9,6 +9,7 @@ const initialState = {
   activeCityName: null,
   offers: [],
   currentReviews: [],
+  currentFavorites: [],
   sortingType: SORTING_TYPE.POPULAR,
   activeOfferId: null
 };
@@ -35,15 +36,32 @@ const reducer = (state = initialState, action) => {
       });
     }
 
+    case ACTION_TYPE.FETCH_FAVORITES: {
+      return Object.assign({}, state, {
+        currentFavorites: action.payload
+      });
+    }
+
     case ACTION_TYPE.ADD_TO_FAVORITES: {
+      const offerId = action.payload.offerId;
+      const isFavorite = action.payload.isFavorite;
+
       const offers = state.offers.slice();
-      const editedOffer = offers.find((offer) => offer.id === action.payload.offerId);
+      const editedOffer = offers.find((offer) => offer.id === offerId);
       const index = offers.findIndex((offer) => offer.id === editedOffer.id);
       const newOffer = Object.assign({}, editedOffer, {
-        isBookmarked: action.payload.isFavorite});
+        isBookmarked: isFavorite});
       offers[index] = newOffer;
 
-      return Object.assign({}, state, {offers});
+      let newCurrentFavorites = [];
+      if (state.currentFavorites && !isFavorite) {
+        newCurrentFavorites = state.currentFavorites.slice().filter((offer) => offer.id !== offerId);
+      }
+
+      return Object.assign({}, state, {
+        offers,
+        currentFavorites: newCurrentFavorites
+      });
     }
 
     case ACTION_TYPE.FETCH_REVIEWS: {

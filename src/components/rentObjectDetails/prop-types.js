@@ -2,6 +2,7 @@ import {requiredFunc, requiredString, requiredNumber, requiredBoolean} from '../
 import PropTypes from 'prop-types';
 
 const propTypes = {
+  isAuthorized: requiredBoolean,
   offer: PropTypes.shape({
     id: requiredNumber,
     name: requiredString,

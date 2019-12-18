@@ -22,7 +22,6 @@ const privateRoutes = {
   ],
   post: [
     ApiRoutes.FAVORITE,
-    ApiRoutes.COMMENTS,
     Routes.OFFER_DETAILS
   ]
 };

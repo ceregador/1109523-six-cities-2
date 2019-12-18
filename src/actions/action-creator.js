@@ -25,6 +25,12 @@ export default {
       payload: reviews
     };
   },
+  fetchFavorites: (favorites) => {
+    return {
+      type: ACTION_TYPE.FETCH_FAVORITES,
+      payload: favorites
+    };
+  },
   switchCity: (newCityName) => {
     return {
       type: ACTION_TYPE.SWITCH_CITY,

@@ -27,6 +27,16 @@ it(`action FETCH_REVIEWS sets reviews`, () => {
   });
 });
 
+it(`action FETCH_FAVORITES sets favoritesOffers`, () => {
+  expect(reducer({}, {
+    type: ACTION_TYPE.FETCH_FAVORITES,
+    payload: [{id: 1, name: `Test`}]
+  })).toMatchObject({
+    currentFavorites: [{id: 1, name: `Test`}]
+
+  });
+});
+
 it(`action AUTHORIZE sets isAuthorized and user`, () => {
   expect(reducer({isAuthorized: false}, {
     type: ACTION_TYPE.AUTHORIZE,
@@ -49,7 +59,7 @@ it(`action ADD_TO_FAVORITES updates offer's isBookmarked property`, () => {
   })).toMatchObject({offers: [{id: 1, isBookmarked: true}]});
 });
 
-it(`action SET_CITY sets activeCityName properly`, () => {
+it(`action SET_CITY sets activeCityName from state's offer`, () => {
   expect(reducer({
     offers: [{id: 1, city: {name: `City`}}]
   },
@@ -57,6 +67,16 @@ it(`action SET_CITY sets activeCityName properly`, () => {
     type: ACTION_TYPE.SET_CITY,
     payload: 1
   })).toHaveProperty(`activeCityName`, `City`);
+});
+
+it(`action SWITCH_CITY updates activeCityName`, () => {
+  expect(reducer({
+    activeCityName: `City`
+  },
+  {
+    type: ACTION_TYPE.SWITCH_CITY,
+    payload: `City1`
+  })).toHaveProperty(`activeCityName`, `City1`);
 });
 
 it(`action UPDATE_ACTIVE_CARD sets activeOfferId if the previous value was NULL`, () => {
@@ -77,4 +97,14 @@ it(`action UPDATE_ACTIVE_CARD updates activeOfferId correctly`, () => {
     type: ACTION_TYPE.UPDATE_ACTIVE_CARD,
     payload: 1
   })).toHaveProperty(`activeOfferId`, 1);
+});
+
+it(`action SET_SORTING_TYPE updates activeCityName`, () => {
+  expect(reducer({
+    sortingType: `Asc`
+  },
+  {
+    type: ACTION_TYPE.SET_SORTING_TYPE,
+    payload: `Descending`
+  })).toHaveProperty(`sortingType`, `Descending`);
 });

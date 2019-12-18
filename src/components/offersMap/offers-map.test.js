@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect, connectAdvanced} from 'react-redux';
 import Renderer from 'react-test-renderer';
-import OffersMap from '../offersMap/offers-map.jsx';
+import OffersMap from './offers-map.jsx';
 
 jest.mock(`../rentObjectCardList/rent-object-card-list.jsx`);
 jest.mock(`react-redux`);

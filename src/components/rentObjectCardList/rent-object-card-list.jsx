@@ -16,6 +16,7 @@ const RentObjectCardList = ({offers, cityName, onActiveItemChange}) => {
       offers={offers}
       containerClassName={`cities__places-list places__list tabs__content`}
       itemClassName={`cities__place-card place-card`}
+      infoClassName={`place-card__info`}
       imageWrapperClassName={`cities__image-wrapper place-card__image-wrapper`}
       onActiveItemChange={onActiveItemChange}/>
   </section>;

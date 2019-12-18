@@ -1,7 +1,8 @@
+import {requiredNumber, requiredBoolean, requiredString} from '../../prop-types';
 import PropTypes from 'prop-types';
-import {requiredString, requiredNumber, requiredBoolean} from '../../prop-types';
 
 export default {
+  city: requiredString,
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: requiredNumber,
     name: requiredString,
@@ -9,9 +10,6 @@ export default {
     image: requiredString,
     type: requiredString,
     price: requiredNumber,
-    isBookmarked: requiredBoolean})),
-  containerClassName: requiredString,
-  itemClassName: requiredString,
-  infoClassName: requiredString,
-  imageWrapperClassName: requiredString
+    isBookmarked: requiredBoolean
+  }))
 };

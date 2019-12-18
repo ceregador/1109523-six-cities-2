@@ -11,6 +11,7 @@ const propTypes = {
   isBookmarked: requiredBoolean,
   onActiveOfferChanged: requiredFunc,
   itemClassName: requiredString,
+  infoClassName: requiredString,
   imageWrapperClassName: requiredString
 };
 
