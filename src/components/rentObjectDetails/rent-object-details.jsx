@@ -8,7 +8,7 @@ import OffersMap from '../offersMap/offers-map.jsx';
 import CardList from '../cardList/card-list.jsx';
 import Operation from '../../operation';
 import Selector from '../../selectors/selector';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import Constants from '../../constants/constants';
 import RATING_TYPE from '../../constants/rating-type';
 
@@ -160,7 +160,7 @@ const RentObjectDetails = ({
   </div>;
 };
 
-RentObjectDetails.propTypes = propTypes;
+RentObjectDetails.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   offer: Selector.getActiveOffer(state),

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ActionCreator from '../../actions/action-creator';
 import SORTING_TYPE from '../../actions/sorting-type';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const Sorting = ({onChangeSortingType}) => {
 
@@ -17,7 +17,7 @@ const Sorting = ({onChangeSortingType}) => {
   </form>;
 };
 
-Sorting.propTypes = propTypes;
+Sorting.propTypes = PropTypes;
 
 const mapDispatchToProps = {
   onChangeSortingType: (event) => ActionCreator.setSortingType(event.target.value)

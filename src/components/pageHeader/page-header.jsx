@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Selector from '../../selectors/selector';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const PageHeader = ({isAuthorized, userEmail}) => {
 
@@ -39,7 +39,7 @@ const PageHeader = ({isAuthorized, userEmail}) => {
   </header>;
 };
 
-PageHeader.propTypes = propTypes;
+PageHeader.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   isAuthorized: Selector.isAuthorizedSelector(state),

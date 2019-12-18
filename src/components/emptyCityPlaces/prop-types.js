@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 
-const propTypes = {
+export default {
   activeCityName: PropTypes.string
 };
-
-export default propTypes;

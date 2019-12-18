@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Rating from '../rating/rating.jsx';
 import Operation from '../../operation';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import RATING_TYPE from '../../constants/rating-type';
 
 const RentObjectCard = ({
@@ -64,7 +64,7 @@ const RentObjectCard = ({
   </article>;
 };
 
-RentObjectCard.propTypes = propTypes;
+RentObjectCard.propTypes = PropTypes;
 
 const mapDispatchToProps = {
   addToFavorites: (offerId, status) => Operation.addToFavorites(offerId, status)

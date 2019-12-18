@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const City = ({city, isActive, onClick}) => {
   const className = `locations__item-link tabs__item`;
@@ -12,6 +12,6 @@ const City = ({city, isActive, onClick}) => {
   </li>;
 };
 
-City.propTypes = propTypes;
+City.propTypes = PropTypes;
 
 export default City;

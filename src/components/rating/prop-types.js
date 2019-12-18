@@ -2,7 +2,7 @@ import {requiredNumber} from '../../prop-types';
 import PropTypes from 'prop-types';
 import RATING_TYPE from '../../constants/rating-type';
 
-const propTypes = {
+export default {
   value: requiredNumber,
   type: PropTypes.oneOf([
     RATING_TYPE.DETAILS,
@@ -10,5 +10,3 @@ const propTypes = {
     RATING_TYPE.REVIEW
   ])
 };
-
-export default propTypes;

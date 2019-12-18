@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Selector from '../../selectors/selector';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 
 const EmptyCityPlaces = ({activeCityName}) => {
   return <div className="cities__places-container cities__places-container--empty container">
@@ -15,7 +15,7 @@ const EmptyCityPlaces = ({activeCityName}) => {
   </div>;
 };
 
-EmptyCityPlaces.propTypes = propTypes;
+EmptyCityPlaces.propTypes = PropTypes;
 
 const mapStateToProps = (state) => ({
   activeCityName: Selector.activeCityNameSelector(state)

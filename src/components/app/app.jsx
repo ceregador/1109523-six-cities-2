@@ -6,7 +6,7 @@ import RentObjectCardDetails from '../rentObjectDetails/rent-object-details.jsx'
 import {connect} from 'react-redux';
 import {Router, Switch, Route} from 'react-router-dom';
 import history from '../../history';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import Operation from '../../operation';
 import {Routes} from '../../constants/routeConstants';
 
@@ -23,7 +23,7 @@ const App = ({tryToAuthorize}) => {
   </Router>;
 };
 
-App.propTypes = propTypes;
+App.propTypes = PropTypes;
 
 const mapDispatchToProps = {
   tryToAuthorize: () => Operation.tryToAuthorize()

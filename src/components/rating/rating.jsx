@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from './prop-types';
+import PropTypes from './prop-types';
 import RATING_TYPE from '../../constants/rating-type';
 
 const Rating = ({type, value}) => {
@@ -41,6 +41,6 @@ const Rating = ({type, value}) => {
   </div>;
 };
 
-Rating.propTypes = propTypes;
+Rating.propTypes = PropTypes;
 
 export default Rating;

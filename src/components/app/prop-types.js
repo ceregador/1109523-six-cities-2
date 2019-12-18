@@ -1,7 +1,5 @@
 import {requiredFunc} from '../../prop-types';
 
-const propTypes = {
+export default {
   tryToAuthorize: requiredFunc
 };
-
-export default propTypes;
