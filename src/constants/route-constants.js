@@ -1,4 +1,4 @@
-export const BaseApiUrl = `https://htmlacademy-react-2.appspot.com/six-cities`;
+export const BASE_API_URL = `https://htmlacademy-react-2.appspot.com/six-cities`;
 
 export const Routes = {
   MAIN_PAGE: `/`,
@@ -31,8 +31,8 @@ export const isPrivateRoute = (method, url) => {
     const methodRoutes = privateRoutes[method.toLowerCase()];
     if (methodRoutes) {
       return !!methodRoutes.find(
-          (route) => url === BaseApiUrl + route
-          || url.startsWith(BaseApiUrl + route));
+          (route) => url === BASE_API_URL + route
+          || url.startsWith(BASE_API_URL + route));
     }
   }
 

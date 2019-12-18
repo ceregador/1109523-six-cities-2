@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import PageHeader from '../pageHeader/page-header.jsx';
 import Rating from '../rating/rating.jsx';
@@ -21,9 +21,19 @@ const RentObjectDetails = ({
   activeCity,
   cityOffers}) => {
 
+  const offerRef = useRef();
+
   useEffect(() => {
     fetchDataForHotel(parseInt(match.params.offerId, Constants.DECIMAL_RADIX));
   }, []);
+
+  useEffect(() => {
+    const newOfferId = parseInt(match.params.offerId, Constants.DECIMAL_RADIX);
+    if (offer && offer.id !== newOfferId) {
+      fetchDataForHotel(parseInt(match.params.offerId, Constants.DECIMAL_RADIX));
+      offerRef.current = offer.id;
+    }
+  });
 
   if (!offer) {
     return <p>Loading...</p>;

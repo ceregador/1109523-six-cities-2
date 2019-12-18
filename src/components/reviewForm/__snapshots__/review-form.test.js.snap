@@ -14,6 +14,13 @@ exports[`renders correctly 1`] = `
   <div
     className="reviews__rating-form form__rating"
   />
+  <span
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
   <textarea
     className="reviews__textarea form__textarea"
     id="review"

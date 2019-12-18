@@ -3,7 +3,7 @@ import {getUniqueCitiesFromOffers, getCityNameByOfferId} from '../actions/offers
 import SORTING_TYPE from '../actions/sorting-type';
 
 const initialState = {
-  isAuthorized: false,
+  isAuthorized: null,
   user: null,
   cities: [],
   activeCityName: null,
@@ -21,6 +21,13 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         isAuthorized: true,
         user: action.payload
+      });
+    }
+
+    case ACTION_TYPE.AUTHORIZATION_FAILED: {
+      return Object.assign({}, state, {
+        isAuthorized: false,
+        user: null
       });
     }
 
@@ -66,7 +73,7 @@ const reducer = (state = initialState, action) => {
 
     case ACTION_TYPE.FETCH_REVIEWS: {
       return Object.assign({}, state, {
-        currentReviews: action.payload});
+        currentReviews: action.payload.sort(({reviewData: rev1Date}, {reviewData: rev2Date}) => new Date(rev2Date) - new Date(rev1Date))});
     }
 
     case ACTION_TYPE.SWITCH_CITY:

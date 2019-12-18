@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import PageHeader from '../pageHeader/page-header.jsx';
@@ -13,6 +13,32 @@ const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
     return <Redirect to="/"/>;
   }
 
+  const isServerErrorWasViewed = useRef(false);
+
+  useEffect(() => {
+    if (formFields[`email`] &&
+      formFields[`email`] !== `` &&
+      formFields[`emailFieldError`]) {
+      onFormFieldChange(`emailFieldError`, null);
+    }
+
+    if (formFields[`password`] &&
+      formFields[`password`] !== `` &&
+      formFields[`passwordFieldError`]) {
+      onFormFieldChange(`passwordFieldError`, null);
+    }
+
+    if (formFields[`serverError`] && !isServerErrorWasViewed.current) {
+      isServerErrorWasViewed.current = true;
+      return;
+    }
+
+    if (formFields[`serverError`] && isServerErrorWasViewed.current) {
+      isServerErrorWasViewed.current = false;
+      onFormFieldChange(`serverError`, null);
+    }
+  });
+
   const onLoginButtonClick = (evt) => {
     evt.preventDefault();
 
@@ -20,14 +46,22 @@ const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
     const password = formFields[`password`];
 
     if (!email || email === ``) {
-      throw new Error(`Поле 'Email' является обязательным`);
+      onFormFieldChange(`emailFieldError`, `Поле Email не должно быть пустым`);
+      return;
     }
 
     if (!password || password === ``) {
-      throw new Error(`Поле 'Password' является обязательным`);
+      onFormFieldChange(`passwordFieldError`, `Поле Password не должно быть пустым`);
+      return;
     }
 
-    authorize(email, password);
+    authorize(email, password).catch((err) => {
+      if (err.response.status === 400) {
+        onFormFieldChange(`serverError`, `Поле Email имеет некорректный формат`);
+      } else {
+        onFormFieldChange(`serverError`, `Неизвестная ошибка`);
+      }
+    });
   };
 
   const onLoginChange = ({target: {value}}) => {
@@ -46,6 +80,7 @@ const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
           <h1 className="login__title">Sign in</h1>
           <form className="login__form form" action="#" method="post">
             <div className="login__input-wrapper form__input-wrapper">
+              <span style={{color: `red`}}>{formFields[`emailFieldError`]}</span>
               <label className="visually-hidden">E-mail</label>
               <input
                 className="login__input form__input"
@@ -57,6 +92,7 @@ const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
               />
             </div>
             <div className="login__input-wrapper form__input-wrapper">
+              <span style={{color: `red`}}>{formFields[`passwordFieldError`]}</span>
               <label className="visually-hidden">Password</label>
               <input
                 className="login__input form__input"
@@ -67,6 +103,7 @@ const SignIn = ({isAuthorized, formFields, onFormFieldChange, authorize}) => {
                 onChange={onPasswordChange}
               />
             </div>
+            <span style={{color: `red`}}>{formFields[`serverError`]}</span>
             <button className="login__submit form__submit button" type="submit" onClick={onLoginButtonClick}>Sign in</button>
           </form>
         </section>

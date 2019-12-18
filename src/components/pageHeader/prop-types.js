@@ -1,8 +1,7 @@
-import {requiredBoolean} from '../../prop-types';
 import PropTypes from 'prop-types';
 
 export default {
-  isAuthorized: requiredBoolean,
+  isAuthorized: PropTypes.bool,
   userEmail: PropTypes.string
 };
 

@@ -2,7 +2,7 @@ import {requiredFunc, requiredString, requiredNumber, requiredBoolean} from '../
 import PropTypes from 'prop-types';
 
 export default {
-  isAuthorized: requiredBoolean,
+  isAuthorized: PropTypes.bool,
   offer: PropTypes.shape({
     id: requiredNumber,
     name: requiredString,

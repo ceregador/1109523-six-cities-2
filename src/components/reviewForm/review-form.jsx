@@ -10,9 +10,20 @@ import PropTypes from './prop-types';
 const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) => {
   const buttonRef = useRef();
   const textAreaRef = useRef();
+  const errorWasViewed = useRef(false);
 
   useEffect(() => {
     buttonRef.current.disabled = !isFormValid();
+
+    if (formFields[`error`] && !errorWasViewed.current) {
+      errorWasViewed.current = true;
+      return;
+    }
+
+    if (formFields[`error`] && errorWasViewed.current) {
+      errorWasViewed.current = false;
+      onFormFieldChange(`error`, null);
+    }
   });
 
   const renderRatingStar = (rate, title) => {
@@ -37,13 +48,13 @@ const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) =
     textAreaRef.current.disabled = true;
     buttonRef.current.disabled = true;
 
-    try {
-      addReview(formFields[`rating`], formFields[`comment`], activeOfferId);
-      clearForm();
-    } finally {
-      textAreaRef.current.disabled = false;
-      buttonRef.current.disabled = false;
-    }
+    addReview(formFields[`rating`], formFields[`comment`], activeOfferId).catch(() => {
+      onFormFieldChange(`error`, `Ошибка при отправке формы`);
+    });
+
+    clearForm();
+    textAreaRef.current.disabled = false;
+    buttonRef.current.disabled = false;
   };
 
   const clearForm = () => {
@@ -79,6 +90,7 @@ const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) =
       {renderRatingStar(2, `badly`)}
       {renderRatingStar(1, `terribly`)}
     </div>
+    <span style={{color: `red`}}>{formFields[`error`]}</span>
     <textarea
       ref={textAreaRef}
       className="reviews__textarea form__textarea"

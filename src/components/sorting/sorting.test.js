@@ -7,7 +7,7 @@ jest.mock(`react-redux`);
 
 it(`renders and connects correctly`, () => {
   const tree = Renderer
-    .create(<Sorting/>)
+    .create(<Sorting onChangeSortingType={() => null}/>)
     .toJSON();
 
   expect(connect).toHaveBeenCalledTimes(1);

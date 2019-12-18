@@ -26,6 +26,13 @@ exports[`renders and connects correctly 1`] = `
           <div
             className="login__input-wrapper form__input-wrapper"
           >
+            <span
+              style={
+                Object {
+                  "color": "red",
+                }
+              }
+            />
             <label
               className="visually-hidden"
             >
@@ -43,6 +50,13 @@ exports[`renders and connects correctly 1`] = `
           <div
             className="login__input-wrapper form__input-wrapper"
           >
+            <span
+              style={
+                Object {
+                  "color": "red",
+                }
+              }
+            />
             <label
               className="visually-hidden"
             >
@@ -57,6 +71,13 @@ exports[`renders and connects correctly 1`] = `
               type="password"
             />
           </div>
+          <span
+            style={
+              Object {
+                "color": "red",
+              }
+            }
+          />
           <button
             className="login__submit form__submit button"
             onClick={[Function]}

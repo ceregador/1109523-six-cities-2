@@ -1,10 +1,10 @@
 import axios from 'axios';
 import history from './history';
-import {BaseApiUrl, isPrivateRoute, ApiRoutes} from './constants/routeConstants';
+import {BASE_API_URL, isPrivateRoute, ApiRoutes} from './constants/route-constants';
 
 const createAPI = () => {
   const api = axios.create({
-    baseURL: BaseApiUrl,
+    baseURL: BASE_API_URL,
     timeout: 5000,
     withCredentials: true
   });
@@ -16,6 +16,8 @@ const createAPI = () => {
     ) {
       history.push(ApiRoutes.LOGIN);
     }
+
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onError);

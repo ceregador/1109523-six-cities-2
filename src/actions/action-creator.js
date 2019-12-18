@@ -13,6 +13,11 @@ export default {
       payload: userData
     };
   },
+  authorizationFailed: () => {
+    return {
+      type: ACTION_TYPE.AUTHORIZATION_FAILED
+    };
+  },
   addToFavorites: ({offerId, isFavorite}) => {
     return {
       type: ACTION_TYPE.ADD_TO_FAVORITES,

@@ -4,7 +4,7 @@ import FavoritesListItem from '../favoritesListItem/favorites-list-item.jsx';
 
 const FavoritesList = ({offers}) => {
 
-  const offersByCity = offers.reduce((acc, offer) => {
+  const getOffersByCity = offers.reduce((acc, offer) => {
     const cityName = offer.city.name;
     const {
       [cityName]: cityOffers = []
@@ -18,8 +18,8 @@ const FavoritesList = ({offers}) => {
 
   const renderItems = () => {
     return (
-      Object.keys(offersByCity).map((key) => {
-        const cityOffers = offersByCity[key];
+      Object.keys(getOffersByCity).map((key) => {
+        const cityOffers = getOffersByCity[key];
         return <FavoritesListItem key={key} city={key} offers={cityOffers} />;
       })
     );

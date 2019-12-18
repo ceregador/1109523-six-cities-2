@@ -1,6 +1,6 @@
 import ActionCreator from './actions/action-creator';
 import Translator from './translator';
-import {ApiRoutes} from './constants/routeConstants';
+import {ApiRoutes} from './constants/route-constants';
 
 export default {
   fetchOffers: () => (dispatch, _, api) => {
@@ -16,11 +16,11 @@ export default {
       .get(ApiRoutes.LOGIN)
       .then((responseData) => dispatch(
           ActionCreator.authorize(Translator.translateUser(responseData.data))))
-      .catch(() => {});
+      .catch(() => dispatch(ActionCreator.authorizationFailed()));
   },
 
   authorize: (email, password) => (dispatch, _, api) => {
-    api
+    return api
       .post(ApiRoutes.LOGIN, ({email, password}))
       .then((responseData) => dispatch(
           ActionCreator.authorize(Translator.translateUser(responseData.data))));
@@ -29,10 +29,11 @@ export default {
   addToFavorites: (offerId, isFavorite) => (dispatch, _, api) => {
     api
       .post(`${ApiRoutes.FAVORITE}/${offerId}/${isFavorite ? 1 : 0}`)
-      .then(() => dispatch(ActionCreator.addToFavorites({offerId, isFavorite})));
+      .then(() => dispatch(ActionCreator.addToFavorites({offerId, isFavorite})))
+      .catch(() => {});
   },
   addReview: (rating, text, offerId) => (dispatch, _, api) => {
-    api
+    return api
       .post(`${ApiRoutes.COMMENTS}/${offerId}`, {
         rating,
         comment: text})

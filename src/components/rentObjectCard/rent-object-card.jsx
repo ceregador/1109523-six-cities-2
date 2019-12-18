@@ -15,7 +15,6 @@ const RentObjectCard = ({
   price,
   rating,
   isBookmarked,
-  onTitleClick,
   onActiveOfferChanged,
   addToFavorites,
   itemClassName,
@@ -56,7 +55,7 @@ const RentObjectCard = ({
         </button>
       </div>
       <Rating type={RATING_TYPE.PREVIEW} value={rating}/>
-      <h2 onClick={onTitleClick} className="place-card__name">
+      <h2 className="place-card__name">
         <Link to={`/offer/${id}`}>{name}</Link>
       </h2>
       <p className="place-card__type">{type}</p>
