@@ -11,6 +11,8 @@ import Operation from '../../operation';
 import {Routes} from '../../constants/route-constants';
 import withAuth from '../../hocs/withAuth/with-auth.jsx';
 
+const AuthFavoritePage = withAuth(FavoritesPage);
+
 const App = ({tryToAuthorize}) => {
   useEffect(() => tryToAuthorize(), []);
 
@@ -18,7 +20,7 @@ const App = ({tryToAuthorize}) => {
     <Switch>
       <Route exact path={Routes.MAIN_PAGE} component={MainPage}/>
       <Route exact path={Routes.LOGIN_PAGE} component={SignIn}/>
-      <Route exact path={Routes.FAVORITES} component={withAuth(FavoritesPage)}/>
+      <Route exact path={Routes.FAVORITES} component={AuthFavoritePage}/>
       <Route exact path={Routes.OFFER_DETAILS} component={RentObjectDetails}/>
     </Switch>
   </Router>;
