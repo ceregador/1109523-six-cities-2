@@ -48,13 +48,16 @@ const ReviewForm = ({addReview, activeOfferId, onFormFieldChange, formFields}) =
     textAreaRef.current.disabled = true;
     buttonRef.current.disabled = true;
 
-    addReview(formFields[`rating`], formFields[`comment`], activeOfferId).catch(() => {
-      onFormFieldChange(`error`, `Ошибка при отправке формы`);
-    });
-
-    clearForm();
-    textAreaRef.current.disabled = false;
-    buttonRef.current.disabled = false;
+    addReview(formFields[`rating`], formFields[`comment`], activeOfferId)
+      .then(
+          () => clearForm(),
+          () => onFormFieldChange(`error`, `Ошибка при отправке формы`
+          ))
+      .then(
+          () => {
+            textAreaRef.current.disabled = false;
+            buttonRef.current.disabled = false;
+          });
   };
 
   const clearForm = () => {

@@ -5,7 +5,7 @@ import {BASE_API_URL, isPrivateRoute, ApiRoutes} from './constants/route-constan
 const createAPI = () => {
   const api = axios.create({
     baseURL: BASE_API_URL,
-    timeout: 5000,
+    timeout: 15000,
     withCredentials: true
   });
 
